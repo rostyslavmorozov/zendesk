@@ -18,6 +18,7 @@ package io.cdap.plugin.zendesk.source.batch.http;
 
 import com.github.rholder.retry.RetryException;
 import com.github.rholder.retry.Retryer;
+import com.google.common.annotations.VisibleForTesting;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import io.cdap.plugin.zendesk.source.batch.BaseZendeskBatchSourceConfig;
@@ -109,7 +110,8 @@ public class PagedIterator implements Iterator<String>, Closeable {
     }
   }
 
-  private Map<String, Object> getResponseAsMap() throws IOException {
+  @VisibleForTesting
+  Map<String, Object> getResponseAsMap() throws IOException {
     //replace out %2B with + due to API restriction
     URI uri = URI.create(RESTRICTED_PATTERN.matcher(nextPage).replaceAll("+"));
     try (CloseableHttpResponse response = httpClient.execute(
@@ -127,7 +129,8 @@ public class PagedIterator implements Iterator<String>, Closeable {
     }
   }
 
-  private String getNextPage(Map<String, Object> responseMap) {
+  @VisibleForTesting
+  String getNextPage(Map<String, Object> responseMap) {
     if (!objectType.isBatch()) {
       return (String) responseMap.get(NEXT_PAGE);
     }
@@ -155,7 +158,8 @@ public class PagedIterator implements Iterator<String>, Closeable {
     return next;
   }
 
-  private Iterator<String> getJsonValuesFromResponse(Map<String, Object> responseMap) {
+  @VisibleForTesting
+  Iterator<String> getJsonValuesFromResponse(Map<String, Object> responseMap) {
     List<Object> responseObjects = (List<Object>) responseMap.get(objectType.getResponseKey());
     if (objectType.getChildKey() == null) {
       return responseObjects
