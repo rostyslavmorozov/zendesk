@@ -23,7 +23,6 @@ import io.cdap.cdap.api.data.schema.Schema;
 import io.cdap.cdap.etl.api.FailureCollector;
 import io.cdap.plugin.zendesk.source.common.ObjectType;
 
-import java.io.IOException;
 import javax.annotation.Nullable;
 
 /**
@@ -67,7 +66,7 @@ public class ZendeskBatchSourceConfig extends BaseZendeskBatchSourceConfig {
     }
     try {
       return Schema.parseJson(schema);
-    } catch (IOException e) {
+    } catch (Exception e) {
       collector.addFailure(String.format("Unable to parse output schema: %s", schema),
                            "Ensure 'Schema' is specified.")
         .withConfigProperty(PROPERTY_SCHEMA);

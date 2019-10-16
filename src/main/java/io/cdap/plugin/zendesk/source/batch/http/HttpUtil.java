@@ -97,7 +97,7 @@ public class HttpUtil {
         additionalParams.add(String.format("start_time=%s", epochSecond));
       }
       if (!StringUtils.isBlank(config.getEndDate())) {
-        long epochSecond = getEpochSecond(config.getStartDate());
+        long epochSecond = getEpochSecond(config.getEndDate());
         additionalParams.add(String.format("end_time=%s", epochSecond));
       }
       if (!StringUtils.isBlank(config.getSatisfactionRatingsScore())) {
