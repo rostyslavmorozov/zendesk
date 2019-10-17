@@ -37,6 +37,9 @@
           "widget-attributes": {
             "default": "Groups",
             "values": [
+              "Article Comments",
+              "Post Comments",
+              "Requests Comments",
               "Ticket Comments",
               "Groups",
               "Organizations",

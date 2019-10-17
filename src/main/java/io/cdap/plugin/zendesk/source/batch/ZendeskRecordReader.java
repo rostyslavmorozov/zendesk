@@ -21,6 +21,7 @@ import com.google.gson.GsonBuilder;
 import io.cdap.cdap.api.data.format.StructuredRecord;
 import io.cdap.cdap.api.data.schema.Schema;
 import io.cdap.cdap.format.StructuredRecordStringConverter;
+import io.cdap.plugin.zendesk.source.batch.http.CommentsPagedIterator;
 import io.cdap.plugin.zendesk.source.batch.http.PagedIterator;
 import io.cdap.plugin.zendesk.source.common.ObjectType;
 import org.apache.hadoop.conf.Configuration;
@@ -29,7 +30,9 @@ import org.apache.hadoop.mapreduce.InputSplit;
 import org.apache.hadoop.mapreduce.RecordReader;
 import org.apache.hadoop.mapreduce.TaskAttemptContext;
 
+import java.io.Closeable;
 import java.io.IOException;
+import java.util.Iterator;
 
 import static io.cdap.plugin.zendesk.source.batch.util.ZendeskBatchSourceConstants.PROPERTY_CONFIG_JSON;
 
@@ -45,7 +48,7 @@ public class ZendeskRecordReader extends RecordReader<NullWritable, StructuredRe
   private final ObjectType objectType;
   private final Schema schema;
 
-  private PagedIterator pagedIterator;
+  private Iterator<String> pagedIterator;
 
   public ZendeskRecordReader(String subdomain, ObjectType objectType, Schema schema) {
     this.subdomain = subdomain;
@@ -59,7 +62,7 @@ public class ZendeskRecordReader extends RecordReader<NullWritable, StructuredRe
     Configuration conf = taskAttemptContext.getConfiguration();
     String configJson = conf.get(PROPERTY_CONFIG_JSON);
     BaseZendeskBatchSourceConfig config = GSON.fromJson(configJson, BaseZendeskBatchSourceConfig.class);
-    pagedIterator = new PagedIterator(config, objectType, subdomain);
+    pagedIterator = createIterator(config);
   }
 
   @Override
@@ -91,7 +94,21 @@ public class ZendeskRecordReader extends RecordReader<NullWritable, StructuredRe
   @Override
   public void close() throws IOException {
     if (pagedIterator != null) {
-      pagedIterator.close();
+      ((Closeable) pagedIterator).close();
     }
+  }
+
+  private Iterator<String> createIterator(BaseZendeskBatchSourceConfig config) {
+    if (objectType == ObjectType.ARTICLE_COMMENTS || objectType == ObjectType.POST_COMMENTS) {
+      return new CommentsPagedIterator(
+        new PagedIterator(config, ObjectType.USERS_SIMPLE, subdomain),
+        config, objectType, subdomain);
+    }
+    if (objectType == ObjectType.REQUESTS_COMMENTS) {
+      return new CommentsPagedIterator(
+        new PagedIterator(config, ObjectType.REQUESTS, subdomain),
+        config, objectType, subdomain);
+    }
+    return new PagedIterator(config, objectType, subdomain);
   }
 }

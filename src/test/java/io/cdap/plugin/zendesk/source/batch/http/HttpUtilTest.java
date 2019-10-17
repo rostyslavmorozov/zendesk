@@ -46,7 +46,35 @@ public class HttpUtilTest {
       300,
       zendeskBaseUrl);
 
-    String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain);
+    String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, null);
+    Assert.assertEquals(expected, actual);
+  }
+
+  @Test
+  public void createFirstPageUrlComments() {
+    String zendeskBaseUrl = "https://%s.zendesk.com/api/v2/%s";
+    String subdomain = "test";
+    ObjectType objectType = ObjectType.ARTICLE_COMMENTS;
+    Long entityId = 2L;
+    String expected = "https://test.zendesk.com/api/v2/help_center/users/2/comments.json";
+
+    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+      "reference",
+      "email@test.com",
+      "apiToken",
+      subdomain,
+      objectType.getObjectName(),
+      "",
+      "",
+      "",
+      20,
+      240,
+      100,
+      300,
+      300,
+      zendeskBaseUrl);
+
+    String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, entityId);
     Assert.assertEquals(expected, actual);
   }
 
@@ -74,7 +102,7 @@ public class HttpUtilTest {
       300,
       zendeskBaseUrl);
 
-    String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain);
+    String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, null);
     Assert.assertEquals(expected, actual);
   }
 
@@ -103,7 +131,7 @@ public class HttpUtilTest {
       300,
       zendeskBaseUrl);
 
-    String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain);
+    String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, null);
     Assert.assertEquals(expected, actual);
   }
 
@@ -130,7 +158,7 @@ public class HttpUtilTest {
       300,
       zendeskBaseUrl);
 
-    String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain);
+    String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, null);
     Assert.assertEquals(expected, actual);
   }
 
@@ -158,7 +186,7 @@ public class HttpUtilTest {
       300,
       zendeskBaseUrl);
 
-    String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain);
+    String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, null);
     Assert.assertEquals(expected, actual);
   }
 
@@ -186,7 +214,7 @@ public class HttpUtilTest {
       300,
       zendeskBaseUrl);
 
-    String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain);
+    String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, null);
     Assert.assertEquals(expected, actual);
   }
 
@@ -214,7 +242,7 @@ public class HttpUtilTest {
       300,
       zendeskBaseUrl);
 
-    String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain);
+    String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, null);
     Assert.assertEquals(expected, actual);
   }
 
@@ -244,7 +272,7 @@ public class HttpUtilTest {
       300,
       zendeskBaseUrl);
 
-    String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain);
+    String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, null);
     Assert.assertEquals(expected, actual);
   }
 
@@ -274,7 +302,7 @@ public class HttpUtilTest {
       300,
       zendeskBaseUrl);
 
-    String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain);
+    String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, null);
     Assert.assertEquals(expected, actual);
   }
 
@@ -304,7 +332,7 @@ public class HttpUtilTest {
       300,
       zendeskBaseUrl);
 
-    String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain);
+    String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, null);
     Assert.assertEquals(expected, actual);
   }
 
@@ -335,7 +363,7 @@ public class HttpUtilTest {
       300,
       zendeskBaseUrl);
 
-    String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain);
+    String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, null);
     Assert.assertEquals(expected, actual);
   }
 }

@@ -23,6 +23,78 @@ import io.cdap.cdap.api.data.schema.Schema;
  */
 public class ObjectTypeSchemaConstants {
 
+  public static final Schema SCHEMA_ARTICLE_COMMENTS = Schema.recordOf(
+    "article_comments",
+    Schema.Field.of("id", Schema.of(Schema.Type.LONG)),
+    Schema.Field.of("url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("body", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("author_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("source_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("source_type", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("locale", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("html_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("created_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("updated_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("vote_sum", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("vote_count", Schema.nullableOf(Schema.of(Schema.Type.LONG)))
+  );
+
+  public static final Schema SCHEMA_POST_COMMENTS = Schema.recordOf(
+    "post_comments",
+    Schema.Field.of("id", Schema.of(Schema.Type.LONG)),
+    Schema.Field.of("url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("body", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("author_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("post_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("official", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
+    Schema.Field.of("html_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("created_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("updated_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("vote_sum", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("vote_count", Schema.nullableOf(Schema.of(Schema.Type.LONG)))
+  );
+
+  public static final Schema SCHEMA_REQUESTS_COMMENTS = Schema.recordOf(
+    "requests_comments",
+    Schema.Field.of("id", Schema.of(Schema.Type.LONG)),
+    Schema.Field.of("type", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("request_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("body", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("html_body", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("plain_body", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("public", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
+    Schema.Field.of("author_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("attachments", Schema.nullableOf(Schema.arrayOf(Schema.nullableOf(Schema.recordOf(
+      "attachment_object",
+      Schema.Field.of("id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+      Schema.Field.of("file_name", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+      Schema.Field.of("content_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+      Schema.Field.of("url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+      Schema.Field.of("mapped_content_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+      Schema.Field.of("content_type", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+      Schema.Field.of("width", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+      Schema.Field.of("height", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+      Schema.Field.of("size", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+      Schema.Field.of("thumbnails", Schema.nullableOf(Schema.arrayOf(Schema.nullableOf(Schema.recordOf(
+        "photo_object",
+        Schema.Field.of("id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+        Schema.Field.of("file_name", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+        Schema.Field.of("content_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+        Schema.Field.of("url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+        Schema.Field.of("mapped_content_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+        Schema.Field.of("content_type", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+        Schema.Field.of("width", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+        Schema.Field.of("height", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+        Schema.Field.of("size", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+        Schema.Field.of("inline", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
+        Schema.Field.of("deleted", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN)))
+      ))))),
+      Schema.Field.of("inline", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
+      Schema.Field.of("deleted", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN)))
+    ))))),
+    Schema.Field.of("created_at", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
+  );
+
   public static final Schema SCHEMA_TICKET_COMMENTS = Schema.recordOf(
     "ticket_comments",
     Schema.Field.of("id", Schema.of(Schema.Type.LONG)),

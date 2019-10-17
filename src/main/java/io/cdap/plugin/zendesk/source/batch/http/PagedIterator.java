@@ -66,10 +66,15 @@ public class PagedIterator implements Iterator<String>, Closeable {
   private String nextPage;
 
   public PagedIterator(BaseZendeskBatchSourceConfig config, ObjectType objectType, String subdomain) {
+    this(config, objectType, subdomain, null);
+  }
+
+  public PagedIterator(BaseZendeskBatchSourceConfig config, ObjectType objectType,
+                       String subdomain, Long entityId) {
     this.config = config;
     this.objectType = objectType;
 
-    String firstPage = HttpUtil.createFirstPageUrl(config, objectType, subdomain);
+    String firstPage = HttpUtil.createFirstPageUrl(config, objectType, subdomain, entityId);
     this.httpClient = HttpUtil.createHttpClient(config);
     this.httpClientContext = HttpUtil.createHttpContext(config, firstPage);
     this.nextPage = firstPage;

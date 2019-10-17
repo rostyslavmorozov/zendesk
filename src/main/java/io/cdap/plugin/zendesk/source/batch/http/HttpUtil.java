@@ -85,7 +85,8 @@ public class HttpUtil {
   }
 
   public static String createFirstPageUrl(BaseZendeskBatchSourceConfig config,
-                                          ObjectType objectType, String subdomain) {
+                                          ObjectType objectType, String subdomain,
+                                          Long entityId) {
     List<String> additionalParams = new ArrayList<>();
     if (objectType.isBatch()) {
       long epochSecond = getEpochSecond(config.getStartDate());
@@ -105,6 +106,9 @@ public class HttpUtil {
       }
     }
     String baseUrl = String.format(config.getZendeskBaseUrl(), subdomain, objectType.getApiEndpoint());
+    if (entityId != null) {
+      baseUrl = String.format(baseUrl, entityId);
+    }
     if (!additionalParams.isEmpty()) {
       String additionalParamsString = String.join("&", additionalParams);
       baseUrl = String.format(baseUrl.contains("?") ? "%s&%s" : "%s?%s", baseUrl, additionalParamsString);

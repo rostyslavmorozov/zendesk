@@ -4,7 +4,8 @@
 Description
 -----------
 This source reads objects from Zendesk.
-Examples of objects are Ticket Comments, Groups, Organizations, Satisfaction Ratings, Tags, Ticket Fields,
+Examples of objects are Article Comments, Post Comments, Requests Comments, Ticket Comments,
+Groups, Organizations, Satisfaction Ratings, Tags, Ticket Fields,
 Ticket Metrics, Ticket Metric Events, Tickets, Users.
 Tags object lists the 500 most popular tags in the last 60 days.
 

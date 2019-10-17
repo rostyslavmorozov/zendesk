@@ -22,8 +22,11 @@ import io.cdap.plugin.zendesk.source.common.config.BaseZendeskSourceConfig;
 
 import java.util.Arrays;
 
+import static io.cdap.plugin.zendesk.source.common.ObjectTypeSchemaConstants.SCHEMA_ARTICLE_COMMENTS;
 import static io.cdap.plugin.zendesk.source.common.ObjectTypeSchemaConstants.SCHEMA_GROUPS;
 import static io.cdap.plugin.zendesk.source.common.ObjectTypeSchemaConstants.SCHEMA_ORGANIZATIONS;
+import static io.cdap.plugin.zendesk.source.common.ObjectTypeSchemaConstants.SCHEMA_POST_COMMENTS;
+import static io.cdap.plugin.zendesk.source.common.ObjectTypeSchemaConstants.SCHEMA_REQUESTS_COMMENTS;
 import static io.cdap.plugin.zendesk.source.common.ObjectTypeSchemaConstants.SCHEMA_SATISFACTION_RATINGS;
 import static io.cdap.plugin.zendesk.source.common.ObjectTypeSchemaConstants.SCHEMA_TAGS;
 import static io.cdap.plugin.zendesk.source.common.ObjectTypeSchemaConstants.SCHEMA_TICKETS;
@@ -37,6 +40,26 @@ import static io.cdap.plugin.zendesk.source.common.ObjectTypeSchemaConstants.SCH
  * Supported Zendesk objects with schema
  */
 public enum ObjectType {
+  USERS_SIMPLE(
+    "Users", "users",
+    "users.json",
+    false, null),
+  REQUESTS(
+    "Requests", "requests",
+    "requests.json",
+    false, null),
+  ARTICLE_COMMENTS(
+    "Article Comments", "comments",
+    "help_center/users/%s/comments.json",
+    false, SCHEMA_ARTICLE_COMMENTS),
+  POST_COMMENTS(
+    "Post Comments", "comments",
+    "community/users/%s/comments.json",
+    false, SCHEMA_POST_COMMENTS),
+  REQUESTS_COMMENTS(
+    "Requests Comments", "comments",
+    "requests/%s/comments.json",
+    false, SCHEMA_REQUESTS_COMMENTS),
   TICKET_COMMENTS(
     "Ticket Comments", "ticket_events", "child_events",
     "incremental/ticket_events.json?include=comment_events",
