@@ -59,16 +59,6 @@
           "name": "startDate",
           "widget-attributes": {
             "placeholder": "YYYY-MM-DDThh:mm:ssZ (ex: 2019-01-01T00:00:00Z)"
-          },
-          "plugin-function": {
-            "label": "Get Schema",
-            "widget": "outputSchema",
-            "output-property": "schema",
-            "omit-properties": [
-              {
-                "name": "schema"
-              }
-            ]
           }
         },
         {
@@ -87,17 +77,17 @@
             "default": "",
             "values": [
               "",
-              "offered",
-              "unoffered",
-              "received",
-              "received_with_comment",
-              "received_without_comment",
-              "good",
-              "good_with_comment",
-              "good_without_comment",
-              "bad",
-              "bad_with_comment",
-              "bad_without_comment"
+              "Offered",
+              "Unoffered",
+              "Received",
+              "Received With Comment",
+              "Received Without Comment",
+              "Good",
+              "Good With Comment",
+              "Good Without Comment",
+              "Bad",
+              "Bad With Comment",
+              "Bad Without Comment"
             ]
           }
         }

@@ -16,7 +16,7 @@
 
 package io.cdap.plugin.zendesk.source.batch.http;
 
-import io.cdap.plugin.zendesk.source.batch.BaseZendeskBatchSourceConfig;
+import io.cdap.plugin.zendesk.source.batch.ZendeskBatchSourceConfig;
 import io.cdap.plugin.zendesk.source.common.ObjectType;
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,7 +30,7 @@ public class HttpUtilTest {
     ObjectType objectType = ObjectType.GROUPS;
     String expected = "https://test.zendesk.com/api/v2/groups.json";
 
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -44,7 +44,8 @@ public class HttpUtilTest {
       100,
       300,
       300,
-      zendeskBaseUrl);
+      zendeskBaseUrl,
+      "");
 
     String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, null);
     Assert.assertEquals(expected, actual);
@@ -58,7 +59,7 @@ public class HttpUtilTest {
     Long entityId = 2L;
     String expected = "https://test.zendesk.com/api/v2/help_center/users/2/comments.json";
 
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -72,7 +73,8 @@ public class HttpUtilTest {
       100,
       300,
       300,
-      zendeskBaseUrl);
+      zendeskBaseUrl,
+      "");
 
     String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, entityId);
     Assert.assertEquals(expected, actual);
@@ -86,7 +88,7 @@ public class HttpUtilTest {
     String startDate = "2019-01-01T23:01:01Z";
     String expected = "https://test.zendesk.com/api/v2/incremental/organizations.json?start_time=1546383661";
 
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -100,7 +102,8 @@ public class HttpUtilTest {
       100,
       300,
       300,
-      zendeskBaseUrl);
+      zendeskBaseUrl,
+      "");
 
     String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, null);
     Assert.assertEquals(expected, actual);
@@ -115,7 +118,7 @@ public class HttpUtilTest {
     String expected = "https://test.zendesk.com/api/v2/incremental" +
       "/ticket_events.json?include=comment_events&start_time=1546383661";
 
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -129,7 +132,8 @@ public class HttpUtilTest {
       100,
       300,
       300,
-      zendeskBaseUrl);
+      zendeskBaseUrl,
+      "");
 
     String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, null);
     Assert.assertEquals(expected, actual);
@@ -142,7 +146,7 @@ public class HttpUtilTest {
     ObjectType objectType = ObjectType.SATISFACTION_RATINGS;
     String expected = "https://test.zendesk.com/api/v2/satisfaction_ratings.json";
 
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -156,7 +160,8 @@ public class HttpUtilTest {
       100,
       300,
       300,
-      zendeskBaseUrl);
+      zendeskBaseUrl,
+      "");
 
     String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, null);
     Assert.assertEquals(expected, actual);
@@ -170,7 +175,7 @@ public class HttpUtilTest {
     String startDate = "2019-01-01T23:01:01Z";
     String expected = "https://test.zendesk.com/api/v2/satisfaction_ratings.json?start_time=1546383661";
 
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -184,7 +189,8 @@ public class HttpUtilTest {
       100,
       300,
       300,
-      zendeskBaseUrl);
+      zendeskBaseUrl,
+      "");
 
     String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, null);
     Assert.assertEquals(expected, actual);
@@ -198,7 +204,7 @@ public class HttpUtilTest {
     String endDate = "2019-01-01T23:01:01Z";
     String expected = "https://test.zendesk.com/api/v2/satisfaction_ratings.json?end_time=1546383661";
 
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -212,7 +218,8 @@ public class HttpUtilTest {
       100,
       300,
       300,
-      zendeskBaseUrl);
+      zendeskBaseUrl,
+      "");
 
     String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, null);
     Assert.assertEquals(expected, actual);
@@ -223,10 +230,10 @@ public class HttpUtilTest {
     String zendeskBaseUrl = "https://%s.zendesk.com/api/v2/%s";
     String subdomain = "test";
     ObjectType objectType = ObjectType.SATISFACTION_RATINGS;
-    String score = "good";
+    String score = "Good";
     String expected = "https://test.zendesk.com/api/v2/satisfaction_ratings.json?score=good";
 
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -240,7 +247,8 @@ public class HttpUtilTest {
       100,
       300,
       300,
-      zendeskBaseUrl);
+      zendeskBaseUrl,
+      "");
 
     String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, null);
     Assert.assertEquals(expected, actual);
@@ -256,7 +264,7 @@ public class HttpUtilTest {
     String expected = "https://test.zendesk.com/api/v2" +
       "/satisfaction_ratings.json?start_time=1546383661&end_time=1546383661";
 
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -270,7 +278,8 @@ public class HttpUtilTest {
       100,
       300,
       300,
-      zendeskBaseUrl);
+      zendeskBaseUrl,
+      "");
 
     String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, null);
     Assert.assertEquals(expected, actual);
@@ -282,11 +291,11 @@ public class HttpUtilTest {
     String subdomain = "test";
     ObjectType objectType = ObjectType.SATISFACTION_RATINGS;
     String startDate = "2019-01-01T23:01:01Z";
-    String score = "good";
+    String score = "Good";
     String expected = "https://test.zendesk.com/api/v2" +
       "/satisfaction_ratings.json?start_time=1546383661&score=good";
 
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -300,7 +309,8 @@ public class HttpUtilTest {
       100,
       300,
       300,
-      zendeskBaseUrl);
+      zendeskBaseUrl,
+      "");
 
     String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, null);
     Assert.assertEquals(expected, actual);
@@ -312,11 +322,11 @@ public class HttpUtilTest {
     String subdomain = "test";
     ObjectType objectType = ObjectType.SATISFACTION_RATINGS;
     String endDate = "2019-01-01T23:01:01Z";
-    String score = "good";
+    String score = "Good";
     String expected = "https://test.zendesk.com/api/v2" +
       "/satisfaction_ratings.json?end_time=1546383661&score=good";
 
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -330,7 +340,8 @@ public class HttpUtilTest {
       100,
       300,
       300,
-      zendeskBaseUrl);
+      zendeskBaseUrl,
+      "");
 
     String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, null);
     Assert.assertEquals(expected, actual);
@@ -343,11 +354,11 @@ public class HttpUtilTest {
     ObjectType objectType = ObjectType.SATISFACTION_RATINGS;
     String startDate = "2019-01-01T23:01:01Z";
     String endDate = "2019-01-01T23:01:01Z";
-    String score = "good";
+    String score = "Good";
     String expected = "https://test.zendesk.com/api/v2" +
       "/satisfaction_ratings.json?start_time=1546383661&end_time=1546383661&score=good";
 
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -361,7 +372,8 @@ public class HttpUtilTest {
       100,
       300,
       300,
-      zendeskBaseUrl);
+      zendeskBaseUrl,
+      "");
 
     String actual = HttpUtil.createFirstPageUrl(config, objectType, subdomain, null);
     Assert.assertEquals(expected, actual);

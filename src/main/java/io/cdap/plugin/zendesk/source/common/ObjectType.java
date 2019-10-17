@@ -22,20 +22,6 @@ import io.cdap.plugin.zendesk.source.common.config.BaseZendeskSourceConfig;
 
 import java.util.Arrays;
 
-import static io.cdap.plugin.zendesk.source.common.ObjectTypeSchemaConstants.SCHEMA_ARTICLE_COMMENTS;
-import static io.cdap.plugin.zendesk.source.common.ObjectTypeSchemaConstants.SCHEMA_GROUPS;
-import static io.cdap.plugin.zendesk.source.common.ObjectTypeSchemaConstants.SCHEMA_ORGANIZATIONS;
-import static io.cdap.plugin.zendesk.source.common.ObjectTypeSchemaConstants.SCHEMA_POST_COMMENTS;
-import static io.cdap.plugin.zendesk.source.common.ObjectTypeSchemaConstants.SCHEMA_REQUESTS_COMMENTS;
-import static io.cdap.plugin.zendesk.source.common.ObjectTypeSchemaConstants.SCHEMA_SATISFACTION_RATINGS;
-import static io.cdap.plugin.zendesk.source.common.ObjectTypeSchemaConstants.SCHEMA_TAGS;
-import static io.cdap.plugin.zendesk.source.common.ObjectTypeSchemaConstants.SCHEMA_TICKETS;
-import static io.cdap.plugin.zendesk.source.common.ObjectTypeSchemaConstants.SCHEMA_TICKET_COMMENTS;
-import static io.cdap.plugin.zendesk.source.common.ObjectTypeSchemaConstants.SCHEMA_TICKET_FIELDS;
-import static io.cdap.plugin.zendesk.source.common.ObjectTypeSchemaConstants.SCHEMA_TICKET_METRICS;
-import static io.cdap.plugin.zendesk.source.common.ObjectTypeSchemaConstants.SCHEMA_TICKET_METRIC_EVENTS;
-import static io.cdap.plugin.zendesk.source.common.ObjectTypeSchemaConstants.SCHEMA_USERS;
-
 /**
  * Supported Zendesk objects with schema
  */
@@ -51,46 +37,46 @@ public enum ObjectType {
   ARTICLE_COMMENTS(
     "Article Comments", "comments",
     "help_center/users/%s/comments.json",
-    false, SCHEMA_ARTICLE_COMMENTS),
+    false, ObjectTypeSchemaConstants.SCHEMA_ARTICLE_COMMENTS),
   POST_COMMENTS(
     "Post Comments", "comments",
     "community/users/%s/comments.json",
-    false, SCHEMA_POST_COMMENTS),
+    false, ObjectTypeSchemaConstants.SCHEMA_POST_COMMENTS),
   REQUESTS_COMMENTS(
     "Requests Comments", "comments",
     "requests/%s/comments.json",
-    false, SCHEMA_REQUESTS_COMMENTS),
+    false, ObjectTypeSchemaConstants.SCHEMA_REQUESTS_COMMENTS),
   TICKET_COMMENTS(
     "Ticket Comments", "ticket_events", "child_events",
     "incremental/ticket_events.json?include=comment_events",
-    true, SCHEMA_TICKET_COMMENTS),
+    true, ObjectTypeSchemaConstants.SCHEMA_TICKET_COMMENTS),
   GROUPS(
     "Groups", "groups", "groups.json",
-    false, SCHEMA_GROUPS),
+    false, ObjectTypeSchemaConstants.SCHEMA_GROUPS),
   ORGANIZATIONS(
     "Organizations", "organizations", "incremental/organizations.json",
-    true, SCHEMA_ORGANIZATIONS),
+    true, ObjectTypeSchemaConstants.SCHEMA_ORGANIZATIONS),
   SATISFACTION_RATINGS(
     "Satisfaction Ratings", "satisfaction_ratings", "satisfaction_ratings.json",
-    false, SCHEMA_SATISFACTION_RATINGS),
+    false, ObjectTypeSchemaConstants.SCHEMA_SATISFACTION_RATINGS),
   TAGS(
     "Tags", "tags", "tags.json",
-    false, SCHEMA_TAGS),
+    false, ObjectTypeSchemaConstants.SCHEMA_TAGS),
   TICKET_FIELDS(
     "Ticket Fields", "ticket_fields", "ticket_fields.json",
-    false, SCHEMA_TICKET_FIELDS),
+    false, ObjectTypeSchemaConstants.SCHEMA_TICKET_FIELDS),
   TICKET_METRICS(
     "Ticket Metrics", "ticket_metrics", "ticket_metrics.json",
-    false, SCHEMA_TICKET_METRICS),
+    false, ObjectTypeSchemaConstants.SCHEMA_TICKET_METRICS),
   TICKET_METRIC_EVENTS(
     "Ticket Metric Events", "ticket_metric_events", "incremental/ticket_metric_events.json",
-    true, SCHEMA_TICKET_METRIC_EVENTS),
+    true, ObjectTypeSchemaConstants.SCHEMA_TICKET_METRIC_EVENTS),
   TICKETS(
     "Tickets", "tickets", "incremental/tickets.json",
-    true, SCHEMA_TICKETS),
+    true, ObjectTypeSchemaConstants.SCHEMA_TICKETS),
   USERS(
     "Users", "users", "incremental/users.json",
-    true, SCHEMA_USERS);
+    true, ObjectTypeSchemaConstants.SCHEMA_USERS);
 
   private static final String CLASS_NAME = ObjectType.class.getName();
 

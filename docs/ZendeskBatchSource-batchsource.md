@@ -18,17 +18,17 @@ Configuration
 
 **Reference Name:** Name used to uniquely identify this source for lineage, annotating metadata, etc.
 
-**Admin Email:** Zendesk's admin email.
+**Admin Email:** Zendesk admin email.
 
-**API Token:** Zendesk's API token. Can be obtained from the Zendesk Support Admin interface.
-Check out Zendesk's documentation for API Token generation.
-https://support.zendesk.com/hc/en-us/articles/226022787-Generating-a-new-API-token-
+**API Token:** Zendesk API token. Can be obtained from the Zendesk Support Admin interface.
+Check out [Zendesk documentation](https://support.zendesk.com/hc/en-us/articles/226022787-Generating-a-new-API-token-)
+for API Token generation.
 
-**Subdomains:** List of Zendesk's Subdomains to read object from.
+**Subdomains:** List of Zendesk Subdomains to read object from.
 
-**Objects to Pull:** Objects to pull from Zendesk's API.
+**Objects to Pull:** Objects to pull from Zendesk API.
 
-**Start Date:** Filter data to only include records where Zendesk's modified date is greater than 
+**Start Date:** Filter data to only include records where Zendesk modified date is greater than 
 or equal to the specified date. The date must be provided in the date format:
 
 |              Format              |       Format Syntax       |          Example          |
@@ -39,7 +39,7 @@ or equal to the specified date. The date must be provided in the date format:
 
 Start Date is required for batch objects like: Ticket Comments, Organizations, Ticket Metric Events, Tickets, Users.
 
-**End Date:** Filter data to only include records where Zendesk's modified date is less than 
+**End Date:** Filter data to only include records where Zendesk modified date is less than 
 the specified date. The date must be provided in the date format:
 
 |              Format              |       Format Syntax       |          Example          |
@@ -55,12 +55,12 @@ If no value is provided, no upper bound is applied.
 
 ### Advanced
 
-**Max Retry Count:** Maximum number of retries can take.
+**Max Retry Count:** Maximum number of retry attempts.
 
 **Max Retry Wait:** Maximum time in seconds retries can take.
 
 **Max Retry Jitter Wait:** Maximum time in milliseconds added to retries.
 
-**Connect Timeout:** Maximum time in seconds connection initialization is allowed to take.
+**Connect Timeout:** Maximum time in seconds connection initialization can take.
 
-**Read Timeout:** Maximum time in seconds fetching data from the server is allowed to take.
+**Read Timeout:** Maximum time in seconds fetching data from the server can take.

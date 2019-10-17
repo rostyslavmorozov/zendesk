@@ -21,7 +21,6 @@ import io.cdap.cdap.api.annotation.Description;
 import io.cdap.cdap.api.annotation.Macro;
 import io.cdap.cdap.api.annotation.Name;
 import io.cdap.cdap.etl.api.FailureCollector;
-import io.cdap.plugin.common.Constants;
 import io.cdap.plugin.common.IdUtils;
 import io.cdap.plugin.common.ReferencePluginConfig;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -42,22 +41,22 @@ public class BaseZendeskSourceConfig extends ReferencePluginConfig {
   public static final String PROPERTY_OBJECTS_TO_PULL = "objectsToPull";
 
   @Name(PROPERTY_ADMIN_EMAIL)
-  @Description("Zendesk Admin's Email.")
+  @Description("Zendesk admin email.")
   @Macro
   private String adminEmail;
 
   @Name(PROPERTY_API_TOKEN)
-  @Description("Zendesk's API Token.")
+  @Description("Zendesk API token.")
   @Macro
   private String apiToken;
 
   @Name(PROPERTY_SUBDOMAINS)
-  @Description("Zendesk's Subdomains to read objects from.")
+  @Description("Zendesk Subdomains to read objects from.")
   @Macro
   private String subdomains;
 
   @Name(PROPERTY_OBJECTS_TO_PULL)
-  @Description("Objects to pull from Zendesk's API.")
+  @Description("Objects to pull from Zendesk API.")
   private String objectsToPull;
 
   public BaseZendeskSourceConfig(String referenceName,
@@ -89,15 +88,9 @@ public class BaseZendeskSourceConfig extends ReferencePluginConfig {
   }
 
   public void validate(FailureCollector collector) {
-    try {
-      IdUtils.validateId(referenceName);
-    } catch (IllegalArgumentException e) {
-      collector.addFailure(e.getMessage(), null)
-        .withConfigProperty(Constants.Reference.REFERENCE_NAME)
-        .withStacktrace(e.getStackTrace());
-    }
+    IdUtils.validateReferenceName(referenceName, collector);
     if (!EmailValidator.getInstance().isValid(adminEmail)) {
-      collector.addFailure(String.format("Provided email is invalid: %s", adminEmail), null)
+      collector.addFailure(String.format("Email '%s' is invalid.", adminEmail), null)
         .withConfigProperty(PROPERTY_ADMIN_EMAIL);
     }
   }

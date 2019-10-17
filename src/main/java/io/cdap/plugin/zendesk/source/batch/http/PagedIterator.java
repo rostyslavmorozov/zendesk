@@ -19,9 +19,11 @@ package io.cdap.plugin.zendesk.source.batch.http;
 import com.github.rholder.retry.RetryException;
 import com.github.rholder.retry.Retryer;
 import com.google.common.annotations.VisibleForTesting;
+import com.google.common.base.CaseFormat;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import io.cdap.plugin.zendesk.source.batch.BaseZendeskBatchSourceConfig;
+import io.cdap.cdap.api.data.schema.Schema;
+import io.cdap.plugin.zendesk.source.batch.ZendeskBatchSourceConfig;
 import io.cdap.plugin.zendesk.source.common.ObjectType;
 import org.apache.http.StatusLine;
 import org.apache.http.client.HttpResponseException;
@@ -39,6 +41,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
@@ -57,7 +60,7 @@ public class PagedIterator implements Iterator<String>, Closeable {
 
   private static final Gson GSON = new GsonBuilder().create();
 
-  private final BaseZendeskBatchSourceConfig config;
+  private final ZendeskBatchSourceConfig config;
   private final CloseableHttpClient httpClient;
   private final HttpClientContext httpClientContext;
   private final ObjectType objectType;
@@ -65,11 +68,11 @@ public class PagedIterator implements Iterator<String>, Closeable {
   private Iterator<String> current;
   private String nextPage;
 
-  public PagedIterator(BaseZendeskBatchSourceConfig config, ObjectType objectType, String subdomain) {
+  public PagedIterator(ZendeskBatchSourceConfig config, ObjectType objectType, String subdomain) {
     this(config, objectType, subdomain, null);
   }
 
-  public PagedIterator(BaseZendeskBatchSourceConfig config, ObjectType objectType,
+  public PagedIterator(ZendeskBatchSourceConfig config, ObjectType objectType,
                        String subdomain, Long entityId) {
     this.config = config;
     this.objectType = objectType;
@@ -93,8 +96,8 @@ public class PagedIterator implements Iterator<String>, Closeable {
         nextPage = getNextPage(responseMap);
         current = getJsonValuesFromResponse(responseMap);
       } catch (ExecutionException | RetryException e) {
-        throw new RuntimeException(String.format("Cannot create Zendesk connection for object: '%s'",
-                                                 objectType.getObjectName()), e);
+        throw new ConnectionTimeoutException(String.format("Cannot create Zendesk connection for object: '%s'",
+                                                           objectType.getObjectName()), e);
       }
     }
     return current.hasNext();
@@ -169,7 +172,10 @@ public class PagedIterator implements Iterator<String>, Closeable {
     if (objectType.getChildKey() == null) {
       return responseObjects
         .stream()
-        .map(GSON::toJson)
+        .map(map -> {
+          replaceKeys((Map) map, objectType.getObjectSchema());
+          return GSON.toJson(map);
+        })
         .iterator();
     }
 
@@ -178,7 +184,57 @@ public class PagedIterator implements Iterator<String>, Closeable {
       .flatMap(responseObject ->
                  ((List<Object>) ((Map) responseObject).get(objectType.getChildKey()))
                    .stream()
-                   .map(GSON::toJson))
+                   .map(map -> {
+                     replaceKeys((Map) map, objectType.getObjectSchema());
+                     return GSON.toJson(map);
+                   }))
       .iterator();
+  }
+
+  @VisibleForTesting
+  void replaceKeys(Map map, Schema schema) {
+    if (map == null || map.isEmpty() || schema == null) {
+      return;
+    }
+    List<Schema.Field> fields = schema.getFields();
+    for (Schema.Field field : fields) {
+      String name = field.getName();
+      String underscoreName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+      if (!name.equals(underscoreName) && map.containsKey(underscoreName)) {
+        map.put(name, map.remove(underscoreName));
+      }
+      Schema fieldSchema = field.getSchema();
+      if (isRecord(fieldSchema)) {
+        Map recordMap = (Map) map.get(name);
+        Schema recordSchema = getRecordSchema(fieldSchema);
+        replaceKeys(recordMap, recordSchema);
+      }
+    }
+  }
+
+  @VisibleForTesting
+  boolean isRecord(Schema fieldSchema) {
+    Schema.Type schemaType = fieldSchema.getType();
+    return schemaType == Schema.Type.RECORD
+      || (schemaType == Schema.Type.UNION
+      && fieldSchema.getUnionSchemas().stream()
+      .map(this::isRecord)
+      .reduce(Boolean::logicalOr)
+      .orElse(false));
+  }
+
+  @VisibleForTesting
+  Schema getRecordSchema(Schema fieldSchema) {
+    Schema.Type schemaType = fieldSchema.getType();
+    if (schemaType == Schema.Type.RECORD) {
+      return fieldSchema;
+    }
+    if (schemaType == Schema.Type.UNION) {
+      return fieldSchema.getUnionSchemas().stream()
+        .map(this::getRecordSchema)
+        .filter(Objects::nonNull)
+        .findFirst().orElse(null);
+    }
+    return null;
   }
 }

@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import io.cdap.cdap.api.data.schema.Schema;
+import io.cdap.plugin.zendesk.source.batch.util.ZendeskBatchSourceConstants;
 import io.cdap.plugin.zendesk.source.common.ObjectType;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.mapreduce.InputFormat;
@@ -35,10 +36,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static io.cdap.plugin.zendesk.source.batch.util.ZendeskBatchSourceConstants.PROPERTY_CONFIG_JSON;
-import static io.cdap.plugin.zendesk.source.batch.util.ZendeskBatchSourceConstants.PROPERTY_OBJECTS_JSON;
-import static io.cdap.plugin.zendesk.source.batch.util.ZendeskBatchSourceConstants.PROPERTY_SCHEMAS_JSON;
-
 /**
  * Input format class which generates input splits for each given object
  * and initializes appropriate record reader.
@@ -52,14 +49,15 @@ public class ZendeskInputFormat extends InputFormat {
   @Override
   public List<InputSplit> getSplits(JobContext context) throws IOException, InterruptedException {
     Configuration configuration = context.getConfiguration();
-    List<String> objects = GSON.fromJson(configuration.get(PROPERTY_OBJECTS_JSON), OBJECTS_TYPE);
-    BaseZendeskBatchSourceConfig config =
-      GSON.fromJson(configuration.get(PROPERTY_CONFIG_JSON), BaseZendeskBatchSourceConfig.class);
+    List<String> objects = GSON.fromJson(
+      configuration.get(ZendeskBatchSourceConstants.PROPERTY_OBJECTS_JSON), OBJECTS_TYPE);
+    ZendeskBatchSourceConfig config =
+      GSON.fromJson(configuration.get(ZendeskBatchSourceConstants.PROPERTY_CONFIG_JSON),
+                    ZendeskBatchSourceConfig.class);
     Set<String> subdomains = config.getSubdomains();
 
     return subdomains.stream()
-      .flatMap(subdomain -> objects.stream()
-        .map(object -> new ZendeskSplit(subdomain, object)))
+      .flatMap(subdomain -> objects.stream().map(object -> new ZendeskSplit(subdomain, object)))
       .collect(Collectors.toList());
   }
 
@@ -70,7 +68,8 @@ public class ZendeskInputFormat extends InputFormat {
     String object = multiSplit.getObject();
 
     Configuration configuration = context.getConfiguration();
-    Map<String, String> schemas = GSON.fromJson(configuration.get(PROPERTY_SCHEMAS_JSON), SCHEMAS_TYPE);
+    Map<String, String> schemas = GSON.fromJson(
+      configuration.get(ZendeskBatchSourceConstants.PROPERTY_SCHEMAS_JSON), SCHEMAS_TYPE);
     Schema schema = Schema.parseJson(schemas.get(object));
     ObjectType objectType = ObjectType.fromString(object);
 

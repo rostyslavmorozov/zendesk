@@ -18,7 +18,7 @@ package io.cdap.plugin.zendesk.source.batch.http;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import io.cdap.plugin.zendesk.source.batch.BaseZendeskBatchSourceConfig;
+import io.cdap.plugin.zendesk.source.batch.ZendeskBatchSourceConfig;
 import io.cdap.plugin.zendesk.source.common.ObjectType;
 
 import java.io.Closeable;
@@ -35,13 +35,13 @@ public class CommentsPagedIterator implements Iterator<String>, Closeable {
   private static final Gson GSON = new GsonBuilder().create();
 
   private final PagedIterator entityIterator;
-  private final BaseZendeskBatchSourceConfig config;
+  private final ZendeskBatchSourceConfig config;
   private final ObjectType objectType;
   private final String subdomain;
   private PagedIterator pagedIterator;
 
   public CommentsPagedIterator(PagedIterator entityIterator,
-                               BaseZendeskBatchSourceConfig config, ObjectType objectType, String subdomain) {
+                               ZendeskBatchSourceConfig config, ObjectType objectType, String subdomain) {
     this.entityIterator = entityIterator;
     this.config = config;
     this.objectType = objectType;

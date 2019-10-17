@@ -17,6 +17,7 @@
 package io.cdap.plugin.zendesk.source.batch;
 
 import io.cdap.cdap.api.data.schema.Schema;
+import io.cdap.cdap.etl.api.FailureCollector;
 import io.cdap.cdap.etl.api.validation.CauseAttributes;
 import io.cdap.cdap.etl.api.validation.ValidationException;
 import io.cdap.cdap.etl.api.validation.ValidationFailure;
@@ -30,6 +31,218 @@ import java.util.List;
 public class ZendeskBatchSourceConfigTest {
 
   private static final String MOCK_STAGE = "mockStage";
+
+  @Test
+  public void testValidate() {
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
+      "reference",
+      "email@test.com",
+      "apiToken",
+      "subdomain",
+      "Groups",
+      "2019-01-01T23:01:01Z",
+      "2019-01-01T23:01:01Z",
+      "satisfactionRatingsScore",
+      20,
+      240,
+      100,
+      300,
+      300,
+      "https://%s.zendesk.com/api/v2/%s",
+      "") {
+      @Override
+      void validateConnection(FailureCollector collector) {
+      }
+    };
+
+    MockFailureCollector collector = new MockFailureCollector(MOCK_STAGE);
+    config.validate(collector);
+    Assert.assertTrue(collector.getValidationFailures().isEmpty());
+  }
+
+  @Test
+  public void testValidateEmptyDates() {
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
+      "reference",
+      "email@test.com",
+      "apiToken",
+      "subdomain",
+      "Groups",
+      "",
+      "",
+      "satisfactionRatingsScore",
+      20,
+      240,
+      100,
+      300,
+      300,
+      "https://%s.zendesk.com/api/v2/%s",
+      "") {
+      @Override
+      void validateConnection(FailureCollector collector) {
+      }
+    };
+
+    MockFailureCollector collector = new MockFailureCollector(MOCK_STAGE);
+    config.validate(collector);
+    Assert.assertTrue(collector.getValidationFailures().isEmpty());
+  }
+
+  @Test
+  public void testValidateBatchObject() {
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
+      "reference",
+      "email@test.com",
+      "apiToken",
+      "subdomain",
+      "Organizations",
+      "2019-01-01T23:01:01Z",
+      "2019-01-01T23:01:01Z",
+      "satisfactionRatingsScore",
+      20,
+      240,
+      100,
+      300,
+      300,
+      "https://%s.zendesk.com/api/v2/%s",
+      "") {
+      @Override
+      void validateConnection(FailureCollector collector) {
+      }
+    };
+
+    MockFailureCollector collector = new MockFailureCollector(MOCK_STAGE);
+    config.validate(collector);
+    Assert.assertTrue(collector.getValidationFailures().isEmpty());
+  }
+
+  @Test
+  public void testValidateStartDateForBatchObject() {
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
+      "reference",
+      "email@test.com",
+      "apiToken",
+      "subdomain",
+      "Organizations",
+      "",
+      "",
+      "satisfactionRatingsScore",
+      20,
+      240,
+      100,
+      300,
+      300,
+      "https://%s.zendesk.com/api/v2/%s",
+      "") {
+      @Override
+      void validateConnection(FailureCollector collector) {
+      }
+    };
+
+    MockFailureCollector collector = new MockFailureCollector(MOCK_STAGE);
+    config.validate(collector);
+
+    Assert.assertEquals(1, collector.getValidationFailures().size());
+    List<ValidationFailure.Cause> causeList = collector.getValidationFailures().get(0).getCauses();
+    Assert.assertEquals(1, causeList.size());
+    Assert.assertEquals(ZendeskBatchSourceConfig.PROPERTY_START_DATE, collector.getValidationFailures().get(0)
+      .getCauses().get(0).getAttribute(CauseAttributes.STAGE_CONFIG));
+  }
+
+  @Test
+  public void testInvalidStartDate() {
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
+      "reference",
+      "email@test.com",
+      "apiToken",
+      "subdomain",
+      "Groups",
+      "invalid",
+      "",
+      "satisfactionRatingsScore",
+      20,
+      240,
+      100,
+      300,
+      300,
+      "https://%s.zendesk.com/api/v2/%s",
+      "") {
+      @Override
+      void validateConnection(FailureCollector collector) {
+      }
+    };
+
+    MockFailureCollector collector = new MockFailureCollector(MOCK_STAGE);
+    config.validate(collector);
+
+    Assert.assertEquals(1, collector.getValidationFailures().size());
+    List<ValidationFailure.Cause> causeList = collector.getValidationFailures().get(0).getCauses();
+    Assert.assertEquals(1, causeList.size());
+    Assert.assertEquals(ZendeskBatchSourceConfig.PROPERTY_START_DATE, collector.getValidationFailures().get(0)
+      .getCauses().get(0).getAttribute(CauseAttributes.STAGE_CONFIG));
+  }
+
+  @Test
+  public void testInvalidEndDate() {
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
+      "reference",
+      "email@test.com",
+      "apiToken",
+      "subdomain",
+      "Groups",
+      "",
+      "invalid",
+      "satisfactionRatingsScore",
+      20,
+      240,
+      100,
+      300,
+      300,
+      "https://%s.zendesk.com/api/v2/%s",
+      "") {
+      @Override
+      void validateConnection(FailureCollector collector) {
+      }
+    };
+
+    MockFailureCollector collector = new MockFailureCollector(MOCK_STAGE);
+    config.validate(collector);
+
+    Assert.assertEquals(1, collector.getValidationFailures().size());
+    List<ValidationFailure.Cause> causeList = collector.getValidationFailures().get(0).getCauses();
+    Assert.assertEquals(1, causeList.size());
+    Assert.assertEquals(ZendeskBatchSourceConfig.PROPERTY_END_DATE, collector.getValidationFailures().get(0)
+      .getCauses().get(0).getAttribute(CauseAttributes.STAGE_CONFIG));
+  }
+
+  @Test
+  public void testValidateConnection() {
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
+      "reference",
+      "email@test.com",
+      "apiToken",
+      "subdomain",
+      "Groups",
+      "2019-01-01T23:01:01Z",
+      "2019-01-01T23:01:01Z",
+      "satisfactionRatingsScore",
+      20,
+      240,
+      100,
+      300,
+      300,
+      "https://%s.localhosttestdomain/api/v2/%s",
+      "");
+
+    MockFailureCollector collector = new MockFailureCollector(MOCK_STAGE);
+    config.validate(collector);
+
+    Assert.assertEquals(1, collector.getValidationFailures().size());
+    List<ValidationFailure.Cause> causeList = collector.getValidationFailures().get(0).getCauses();
+    Assert.assertEquals(1, causeList.size());
+    Assert.assertEquals(ZendeskBatchSourceConfig.PROPERTY_SUBDOMAINS, collector.getValidationFailures().get(0)
+      .getCauses().get(0).getAttribute(CauseAttributes.STAGE_CONFIG));
+  }
 
   @Test
   public void testGetSchema() {

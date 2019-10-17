@@ -58,12 +58,9 @@ public class ZendeskBatchSource extends BatchSource<NullWritable, StructuredReco
     FailureCollector failureCollector = pipelineConfigurer.getStageConfigurer().getFailureCollector();
     validateConfiguration(failureCollector);
 
-    if (config.containsMacro(BaseZendeskSourceConfig.PROPERTY_OBJECTS_TO_PULL)) {
-      pipelineConfigurer.getStageConfigurer().setOutputSchema(null);
-      return;
+    if (!config.containsMacro(BaseZendeskSourceConfig.PROPERTY_OBJECTS_TO_PULL)) {
+      pipelineConfigurer.getStageConfigurer().setOutputSchema(config.getSchema(failureCollector));
     }
-
-    pipelineConfigurer.getStageConfigurer().setOutputSchema(config.getSchema(failureCollector));
   }
 
   @Override

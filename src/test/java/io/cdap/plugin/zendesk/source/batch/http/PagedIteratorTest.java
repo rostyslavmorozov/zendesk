@@ -17,7 +17,8 @@
 package io.cdap.plugin.zendesk.source.batch.http;
 
 import com.google.common.collect.ImmutableMap;
-import io.cdap.plugin.zendesk.source.batch.BaseZendeskBatchSourceConfig;
+import io.cdap.cdap.api.data.schema.Schema;
+import io.cdap.plugin.zendesk.source.batch.ZendeskBatchSourceConfig;
 import io.cdap.plugin.zendesk.source.common.ObjectType;
 import org.junit.Assert;
 import org.junit.Test;
@@ -40,7 +41,7 @@ public class PagedIteratorTest {
 
     ObjectType objectType = ObjectType.GROUPS;
     String subdomain = "subdomain";
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -54,7 +55,8 @@ public class PagedIteratorTest {
       100,
       300,
       300,
-      "http://%s.localhosttestdomain/%s");
+      "http://%s.localhosttestdomain/%s",
+      "");
 
     try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain)) {
       String actual = pagedIterator.getNextPage(ImmutableMap.of("next_page", expected));
@@ -66,7 +68,7 @@ public class PagedIteratorTest {
   public void testGetNextPageNull() throws IOException {
     ObjectType objectType = ObjectType.GROUPS;
     String subdomain = "subdomain";
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -80,7 +82,8 @@ public class PagedIteratorTest {
       100,
       300,
       300,
-      "http://%s.localhosttestdomain/%s");
+      "http://%s.localhosttestdomain/%s",
+      "");
 
     try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain)) {
       String actual = pagedIterator.getNextPage(new HashMap<>());
@@ -97,7 +100,7 @@ public class PagedIteratorTest {
 
     ObjectType objectType = ObjectType.ORGANIZATIONS;
     String subdomain = "subdomain";
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -111,7 +114,8 @@ public class PagedIteratorTest {
       100,
       300,
       300,
-      "http://%s.localhosttestdomain/%s");
+      "http://%s.localhosttestdomain/%s",
+      "");
 
     try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain)) {
       String actual = pagedIterator.getNextPage(ImmutableMap.of("next_page", expected,
@@ -125,7 +129,7 @@ public class PagedIteratorTest {
   public void testGetNextPageBatchNull() throws IOException {
     ObjectType objectType = ObjectType.ORGANIZATIONS;
     String subdomain = "subdomain";
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -139,7 +143,8 @@ public class PagedIteratorTest {
       100,
       300,
       300,
-      "http://%s.localhosttestdomain/%s");
+      "http://%s.localhosttestdomain/%s",
+      "");
 
     try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain)) {
       String actual = pagedIterator.getNextPage(new HashMap<>());
@@ -151,7 +156,7 @@ public class PagedIteratorTest {
   public void testGetNextPageBatchEndTimeNull() throws IOException {
     ObjectType objectType = ObjectType.ORGANIZATIONS;
     String subdomain = "subdomain";
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -165,7 +170,8 @@ public class PagedIteratorTest {
       100,
       300,
       300,
-      "http://%s.localhosttestdomain/%s");
+      "http://%s.localhosttestdomain/%s",
+      "");
 
     try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain)) {
       String actual = pagedIterator.getNextPage(ImmutableMap.of("next_page", "expected_page"));
@@ -177,7 +183,7 @@ public class PagedIteratorTest {
   public void testGetNextPageBatchEndTimeZero() throws IOException {
     ObjectType objectType = ObjectType.ORGANIZATIONS;
     String subdomain = "subdomain";
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -191,7 +197,8 @@ public class PagedIteratorTest {
       100,
       300,
       300,
-      "http://%s.localhosttestdomain/%s");
+      "http://%s.localhosttestdomain/%s",
+      "");
 
     try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain)) {
       String actual = pagedIterator.getNextPage(ImmutableMap.of("next_page", "expected_page",
@@ -207,7 +214,7 @@ public class PagedIteratorTest {
 
     ObjectType objectType = ObjectType.ORGANIZATIONS;
     String subdomain = "subdomain";
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -221,7 +228,8 @@ public class PagedIteratorTest {
       100,
       300,
       300,
-      "http://%s.localhosttestdomain/%s");
+      "http://%s.localhosttestdomain/%s",
+      "");
 
     try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain)) {
       String actual = pagedIterator.getNextPage(ImmutableMap.of("next_page", "expected_page",
@@ -237,7 +245,7 @@ public class PagedIteratorTest {
 
     ObjectType objectType = ObjectType.ORGANIZATIONS;
     String subdomain = "subdomain";
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -251,7 +259,8 @@ public class PagedIteratorTest {
       100,
       300,
       300,
-      "http://%s.localhosttestdomain/%s");
+      "http://%s.localhosttestdomain/%s",
+      "");
 
     try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain)) {
       String actual = pagedIterator.getNextPage(ImmutableMap.of("next_page", "expected_page",
@@ -267,7 +276,7 @@ public class PagedIteratorTest {
 
     ObjectType objectType = ObjectType.ORGANIZATIONS;
     String subdomain = "subdomain";
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -281,7 +290,8 @@ public class PagedIteratorTest {
       100,
       300,
       300,
-      "http://%s.localhosttestdomain/%s");
+      "http://%s.localhosttestdomain/%s",
+      "");
 
     try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain)) {
       String actual = pagedIterator.getNextPage(ImmutableMap.of("next_page", "expected_page",
@@ -299,7 +309,7 @@ public class PagedIteratorTest {
 
     ObjectType objectType = ObjectType.ORGANIZATIONS;
     String subdomain = "subdomain";
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -313,7 +323,8 @@ public class PagedIteratorTest {
       100,
       300,
       300,
-      "http://%s.localhosttestdomain/%s");
+      "http://%s.localhosttestdomain/%s",
+      "");
 
     try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain)) {
       String actual = pagedIterator.getNextPage(ImmutableMap.of("next_page", "expected_page",
@@ -335,7 +346,7 @@ public class PagedIteratorTest {
 
     ObjectType objectType = ObjectType.ORGANIZATIONS;
     String subdomain = "subdomain";
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -349,7 +360,8 @@ public class PagedIteratorTest {
       100,
       300,
       300,
-      "http://%s.localhosttestdomain/%s");
+      "http://%s.localhosttestdomain/%s",
+      "");
 
     try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain)) {
       Iterator<String> result = pagedIterator.getJsonValuesFromResponse(response);
@@ -374,7 +386,7 @@ public class PagedIteratorTest {
 
     ObjectType objectType = ObjectType.TICKET_COMMENTS;
     String subdomain = "subdomain";
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -388,7 +400,8 @@ public class PagedIteratorTest {
       100,
       300,
       300,
-      "http://%s.localhosttestdomain/%s");
+      "http://%s.localhosttestdomain/%s",
+      "");
 
     try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain)) {
       Iterator<String> result = pagedIterator.getJsonValuesFromResponse(response);
@@ -396,6 +409,337 @@ public class PagedIteratorTest {
       result.forEachRemaining(actual::add);
 
       Assert.assertEquals(expected, actual);
+    }
+  }
+
+  @Test
+  public void testReplaceKeys() throws IOException {
+    Map<String, String> actualMap1 = new HashMap<>();
+    actualMap1.put("map1test", "map1testval");
+
+    Map<String, String> actualMap2 = new HashMap<>();
+    actualMap2.put("map2test", "map2testval");
+    actualMap2.put("map2_test_key", "map2testval2");
+
+    Map<String, String> actualMap3Inner = new HashMap<>();
+    actualMap3Inner.put("map3innertest", "map3innertestval");
+    actualMap3Inner.put("map3_inner_test_key", "map3innertestval2");
+
+    Map<String, Object> actualMap3 = new HashMap<>();
+    actualMap3.put("map3test", "map3testval");
+    actualMap3.put("map3_test_key", actualMap3Inner);
+
+    Map<String, Object> actual = new HashMap<>();
+    actual.put("test", "1");
+    actual.put("test_key", "1");
+    actual.put("map1", actualMap1);
+    actual.put("map2", actualMap2);
+    actual.put("map3_key", actualMap3);
+
+    Map<String, String> expectedMap1 = new HashMap<>();
+    expectedMap1.put("map1test", "map1testval");
+
+    Map<String, String> expectedMap2 = new HashMap<>();
+    expectedMap2.put("map2test", "map2testval");
+    expectedMap2.put("map2TestKey", "map2testval2");
+
+    Map<String, String> expectedMap3Inner = new HashMap<>();
+    expectedMap3Inner.put("map3innertest", "map3innertestval");
+    expectedMap3Inner.put("map3InnerTestKey", "map3innertestval2");
+
+    Map<String, Object> expectedMap3 = new HashMap<>();
+    expectedMap3.put("map3test", "map3testval");
+    expectedMap3.put("map3TestKey", expectedMap3Inner);
+
+    Map<String, Object> expected = new HashMap<>();
+    expected.put("test", "1");
+    expected.put("testKey", "1");
+    expected.put("map1", expectedMap1);
+    expected.put("map2", expectedMap2);
+    expected.put("map3Key", expectedMap3);
+
+    Schema schema = Schema.recordOf(
+      "test",
+      Schema.Field.of("test", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+      Schema.Field.of("testKey", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+      Schema.Field.of("map1", Schema.nullableOf(Schema.recordOf(
+        "map1",
+        Schema.Field.of("map1test", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
+      ))),
+      Schema.Field.of("map2", Schema.nullableOf(Schema.recordOf(
+        "map2",
+        Schema.Field.of("map2test", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+        Schema.Field.of("map2TestKey", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
+      ))),
+      Schema.Field.of("map3Key", Schema.nullableOf(Schema.recordOf(
+        "map3Key",
+        Schema.Field.of("map3test", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+        Schema.Field.of("map3TestKey", Schema.nullableOf(Schema.recordOf(
+          "map3TestKey",
+          Schema.Field.of("map3innertest", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+          Schema.Field.of("map3InnerTestKey", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
+        )))
+      )))
+    );
+
+    ObjectType objectType = ObjectType.GROUPS;
+    String subdomain = "subdomain";
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
+      "reference",
+      "email@test.com",
+      "apiToken",
+      subdomain,
+      "Groups",
+      "2019-01-01T23:01:01Z",
+      "2019-01-01T23:01:01Z",
+      "satisfactionRatingsScore",
+      20,
+      240,
+      100,
+      300,
+      300,
+      "http://%s.localhosttestdomain/%s",
+      "");
+
+    try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain)) {
+      pagedIterator.replaceKeys(actual, schema);
+      Assert.assertEquals(expected, actual);
+    }
+  }
+
+  @Test
+  public void testIsRecord() throws IOException {
+    Schema expected = Schema.recordOf(
+      "test",
+      Schema.Field.of("test_field", Schema.nullableOf(Schema.of(Schema.Type.LONG)))
+    );
+
+    ObjectType objectType = ObjectType.GROUPS;
+    String subdomain = "subdomain";
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
+      "reference",
+      "email@test.com",
+      "apiToken",
+      subdomain,
+      "Groups",
+      "2019-01-01T23:01:01Z",
+      "2019-01-01T23:01:01Z",
+      "satisfactionRatingsScore",
+      20,
+      240,
+      100,
+      300,
+      300,
+      "http://%s.localhosttestdomain/%s",
+      "");
+
+    try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain)) {
+      boolean actual = pagedIterator.isRecord(expected);
+      Assert.assertTrue(actual);
+    }
+  }
+
+  @Test
+  public void testIsRecordInsideUnion() throws IOException {
+    Schema expected = Schema.recordOf(
+      "test",
+      Schema.Field.of("test_field", Schema.nullableOf(Schema.of(Schema.Type.LONG)))
+    );
+
+    ObjectType objectType = ObjectType.GROUPS;
+    String subdomain = "subdomain";
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
+      "reference",
+      "email@test.com",
+      "apiToken",
+      subdomain,
+      "Groups",
+      "2019-01-01T23:01:01Z",
+      "2019-01-01T23:01:01Z",
+      "satisfactionRatingsScore",
+      20,
+      240,
+      100,
+      300,
+      300,
+      "http://%s.localhosttestdomain/%s",
+      "");
+
+    try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain)) {
+      boolean actual = pagedIterator.isRecord(Schema.nullableOf(expected));
+      Assert.assertTrue(actual);
+    }
+  }
+
+  @Test
+  public void testIsRecordUnionSimple() throws IOException {
+    ObjectType objectType = ObjectType.GROUPS;
+    String subdomain = "subdomain";
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
+      "reference",
+      "email@test.com",
+      "apiToken",
+      subdomain,
+      "Groups",
+      "2019-01-01T23:01:01Z",
+      "2019-01-01T23:01:01Z",
+      "satisfactionRatingsScore",
+      20,
+      240,
+      100,
+      300,
+      300,
+      "http://%s.localhosttestdomain/%s",
+      "");
+
+    try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain)) {
+      boolean actual = pagedIterator.isRecord(Schema.nullableOf(Schema.of(Schema.Type.LONG)));
+      Assert.assertFalse(actual);
+    }
+  }
+
+  @Test
+  public void testIsRecordSchemaSimple() throws IOException {
+    ObjectType objectType = ObjectType.GROUPS;
+    String subdomain = "subdomain";
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
+      "reference",
+      "email@test.com",
+      "apiToken",
+      subdomain,
+      "Groups",
+      "2019-01-01T23:01:01Z",
+      "2019-01-01T23:01:01Z",
+      "satisfactionRatingsScore",
+      20,
+      240,
+      100,
+      300,
+      300,
+      "http://%s.localhosttestdomain/%s",
+      "");
+
+    try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain)) {
+      boolean actual = pagedIterator.isRecord(Schema.of(Schema.Type.LONG));
+      Assert.assertFalse(actual);
+    }
+  }
+
+  @Test
+  public void testGetRecordSchema() throws IOException {
+    Schema expected = Schema.recordOf(
+      "test",
+      Schema.Field.of("test_field", Schema.nullableOf(Schema.of(Schema.Type.LONG)))
+    );
+
+    ObjectType objectType = ObjectType.GROUPS;
+    String subdomain = "subdomain";
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
+      "reference",
+      "email@test.com",
+      "apiToken",
+      subdomain,
+      "Groups",
+      "2019-01-01T23:01:01Z",
+      "2019-01-01T23:01:01Z",
+      "satisfactionRatingsScore",
+      20,
+      240,
+      100,
+      300,
+      300,
+      "http://%s.localhosttestdomain/%s",
+      "");
+
+    try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain)) {
+      Schema actual = pagedIterator.getRecordSchema(expected);
+      Assert.assertEquals(expected, actual);
+    }
+  }
+
+  @Test
+  public void testGetRecordSchemaInsideUnion() throws IOException {
+    Schema expected = Schema.recordOf(
+      "test",
+      Schema.Field.of("test_field", Schema.nullableOf(Schema.of(Schema.Type.LONG)))
+    );
+
+    ObjectType objectType = ObjectType.GROUPS;
+    String subdomain = "subdomain";
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
+      "reference",
+      "email@test.com",
+      "apiToken",
+      subdomain,
+      "Groups",
+      "2019-01-01T23:01:01Z",
+      "2019-01-01T23:01:01Z",
+      "satisfactionRatingsScore",
+      20,
+      240,
+      100,
+      300,
+      300,
+      "http://%s.localhosttestdomain/%s",
+      "");
+
+    try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain)) {
+      Schema actual = pagedIterator.getRecordSchema(Schema.nullableOf(expected));
+      Assert.assertEquals(expected, actual);
+    }
+  }
+
+  @Test
+  public void testGetRecordSchemaUnionSimple() throws IOException {
+    ObjectType objectType = ObjectType.GROUPS;
+    String subdomain = "subdomain";
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
+      "reference",
+      "email@test.com",
+      "apiToken",
+      subdomain,
+      "Groups",
+      "2019-01-01T23:01:01Z",
+      "2019-01-01T23:01:01Z",
+      "satisfactionRatingsScore",
+      20,
+      240,
+      100,
+      300,
+      300,
+      "http://%s.localhosttestdomain/%s",
+      "");
+
+    try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain)) {
+      Schema actual = pagedIterator.getRecordSchema(Schema.nullableOf(Schema.of(Schema.Type.LONG)));
+      Assert.assertNull(actual);
+    }
+  }
+
+  @Test
+  public void testGetRecordSchemaSimple() throws IOException {
+    ObjectType objectType = ObjectType.GROUPS;
+    String subdomain = "subdomain";
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
+      "reference",
+      "email@test.com",
+      "apiToken",
+      subdomain,
+      "Groups",
+      "2019-01-01T23:01:01Z",
+      "2019-01-01T23:01:01Z",
+      "satisfactionRatingsScore",
+      20,
+      240,
+      100,
+      300,
+      300,
+      "http://%s.localhosttestdomain/%s",
+      "");
+
+    try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain)) {
+      Schema actual = pagedIterator.getRecordSchema(Schema.of(Schema.Type.LONG));
+      Assert.assertNull(actual);
     }
   }
 
@@ -408,7 +752,7 @@ public class PagedIteratorTest {
 
     ObjectType objectType = ObjectType.GROUPS;
     String subdomain = "subdomain";
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -422,7 +766,8 @@ public class PagedIteratorTest {
       100,
       300,
       300,
-      "http://%s.localhosttestdomain/%s");
+      "http://%s.localhosttestdomain/%s",
+      "");
 
     try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain) {
       @Override
@@ -447,7 +792,7 @@ public class PagedIteratorTest {
 
     ObjectType objectType = ObjectType.GROUPS;
     String subdomain = "subdomain";
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -461,7 +806,8 @@ public class PagedIteratorTest {
       100,
       300,
       300,
-      "http://%s.localhosttestdomain/%s");
+      "http://%s.localhosttestdomain/%s",
+      "");
 
     try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain) {
       @Override
@@ -498,7 +844,7 @@ public class PagedIteratorTest {
 
     ObjectType objectType = ObjectType.GROUPS;
     String subdomain = "subdomain";
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -512,7 +858,8 @@ public class PagedIteratorTest {
       100,
       300,
       300,
-      "http://%s.localhosttestdomain/%s");
+      "http://%s.localhosttestdomain/%s",
+      "");
 
     try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain) {
       @Override
@@ -540,7 +887,7 @@ public class PagedIteratorTest {
 
     ObjectType objectType = ObjectType.GROUPS;
     String subdomain = "subdomain";
-    BaseZendeskBatchSourceConfig config = new BaseZendeskBatchSourceConfig(
+    ZendeskBatchSourceConfig config = new ZendeskBatchSourceConfig(
       "reference",
       "email@test.com",
       "apiToken",
@@ -554,7 +901,8 @@ public class PagedIteratorTest {
       100,
       300,
       300,
-      "http://%s.localhosttestdomain/%s");
+      "http://%s.localhosttestdomain/%s",
+      "");
 
     try (PagedIterator pagedIterator = new PagedIterator(config, objectType, subdomain) {
       @Override

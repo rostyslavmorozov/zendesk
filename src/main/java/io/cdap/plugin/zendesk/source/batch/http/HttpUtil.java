@@ -21,7 +21,7 @@ import com.github.rholder.retry.RetryerBuilder;
 import com.github.rholder.retry.StopStrategies;
 import com.github.rholder.retry.WaitStrategies;
 import com.google.common.base.Strings;
-import io.cdap.plugin.zendesk.source.batch.BaseZendeskBatchSourceConfig;
+import io.cdap.plugin.zendesk.source.batch.ZendeskBatchSourceConfig;
 import io.cdap.plugin.zendesk.source.common.ObjectType;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpHost;
@@ -44,13 +44,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * A class which contains utilities to build http specific resources.
  */
 public class HttpUtil {
 
-  public static CloseableHttpClient createHttpClient(BaseZendeskBatchSourceConfig config) {
+  private static final Map<String, String> SATISFACTION_RATINGS_SCORE_MAP = Stream.of(
+    new String[][]{{"Offered", "offered"},
+      {"Unoffered", "unoffered"},
+      {"Received", "received"},
+      {"Received With Comment", "received_with_comment"},
+      {"Received Without Comment", "received_without_comment"},
+      {"Good", "good"},
+      {"Good With Comment", "good_with_comment"},
+      {"Good Without Comment", "good_without_comment"},
+      {"Bad", "bad"},
+      {"Bad With Comment", "bad_with_comment"},
+      {"Bad Without Comment", "bad_without_comment"}})
+    .collect(Collectors.toMap(data -> data[0], data -> data[1]));
+
+  public static CloseableHttpClient createHttpClient(ZendeskBatchSourceConfig config) {
     HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
     Long connectTimeoutMillis = TimeUnit.SECONDS.toMillis(config.getConnectTimeout());
     Long readTimeoutMillis = TimeUnit.SECONDS.toMillis(config.getReadTimeout());
@@ -62,7 +78,7 @@ public class HttpUtil {
     return httpClientBuilder.build();
   }
 
-  public static HttpClientContext createHttpContext(BaseZendeskBatchSourceConfig config, String url) {
+  public static HttpClientContext createHttpContext(ZendeskBatchSourceConfig config, String url) {
     String adminEmail = config.getAdminEmail();
     String apiToken = config.getApiToken();
     URI uri = URI.create(url);
@@ -84,7 +100,7 @@ public class HttpUtil {
     return context;
   }
 
-  public static String createFirstPageUrl(BaseZendeskBatchSourceConfig config,
+  public static String createFirstPageUrl(ZendeskBatchSourceConfig config,
                                           ObjectType objectType, String subdomain,
                                           Long entityId) {
     List<String> additionalParams = new ArrayList<>();
@@ -102,7 +118,8 @@ public class HttpUtil {
         additionalParams.add(String.format("end_time=%s", epochSecond));
       }
       if (!StringUtils.isBlank(config.getSatisfactionRatingsScore())) {
-        additionalParams.add(String.format("score=%s", config.getSatisfactionRatingsScore()));
+        additionalParams.add(String.format(
+          "score=%s", SATISFACTION_RATINGS_SCORE_MAP.get(config.getSatisfactionRatingsScore())));
       }
     }
     String baseUrl = String.format(config.getZendeskBaseUrl(), subdomain, objectType.getApiEndpoint());
@@ -116,7 +133,7 @@ public class HttpUtil {
     return baseUrl;
   }
 
-  public static Retryer<Map<String, Object>> buildRetryer(BaseZendeskBatchSourceConfig config) {
+  public static Retryer<Map<String, Object>> buildRetryer(ZendeskBatchSourceConfig config) {
     return RetryerBuilder.<Map<String, Object>>newBuilder()
       .retryIfExceptionOfType(RateLimitException.class)
       .withWaitStrategy(WaitStrategies.join(

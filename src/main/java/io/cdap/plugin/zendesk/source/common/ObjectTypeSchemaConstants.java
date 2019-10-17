@@ -24,65 +24,65 @@ import io.cdap.cdap.api.data.schema.Schema;
 public class ObjectTypeSchemaConstants {
 
   public static final Schema SCHEMA_ARTICLE_COMMENTS = Schema.recordOf(
-    "article_comments",
+    "articleComments",
     Schema.Field.of("id", Schema.of(Schema.Type.LONG)),
     Schema.Field.of("url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("body", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("author_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-    Schema.Field.of("source_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-    Schema.Field.of("source_type", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("authorId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("sourceId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("sourceType", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("locale", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("html_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("created_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("updated_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("vote_sum", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-    Schema.Field.of("vote_count", Schema.nullableOf(Schema.of(Schema.Type.LONG)))
+    Schema.Field.of("htmlUrl", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("createdAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("updatedAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("voteSum", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("voteCount", Schema.nullableOf(Schema.of(Schema.Type.LONG)))
   );
 
   public static final Schema SCHEMA_POST_COMMENTS = Schema.recordOf(
-    "post_comments",
+    "postComments",
     Schema.Field.of("id", Schema.of(Schema.Type.LONG)),
     Schema.Field.of("url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("body", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("author_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-    Schema.Field.of("post_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("authorId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("postId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
     Schema.Field.of("official", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
-    Schema.Field.of("html_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("created_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("updated_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("vote_sum", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-    Schema.Field.of("vote_count", Schema.nullableOf(Schema.of(Schema.Type.LONG)))
+    Schema.Field.of("htmlUrl", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("createdAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("updatedAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("voteSum", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("voteCount", Schema.nullableOf(Schema.of(Schema.Type.LONG)))
   );
 
   public static final Schema SCHEMA_REQUESTS_COMMENTS = Schema.recordOf(
-    "requests_comments",
+    "requestsComments",
     Schema.Field.of("id", Schema.of(Schema.Type.LONG)),
     Schema.Field.of("type", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("request_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("requestId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
     Schema.Field.of("body", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("html_body", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("plain_body", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("htmlBody", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("plainBody", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("public", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
-    Schema.Field.of("author_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("authorId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
     Schema.Field.of("attachments", Schema.nullableOf(Schema.arrayOf(Schema.nullableOf(Schema.recordOf(
-      "attachment_object",
+      "attachmentObject",
       Schema.Field.of("id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-      Schema.Field.of("file_name", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-      Schema.Field.of("content_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+      Schema.Field.of("fileName", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+      Schema.Field.of("contentUrl", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
       Schema.Field.of("url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-      Schema.Field.of("mapped_content_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-      Schema.Field.of("content_type", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+      Schema.Field.of("mappedContentUrl", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+      Schema.Field.of("contentType", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
       Schema.Field.of("width", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
       Schema.Field.of("height", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
       Schema.Field.of("size", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
       Schema.Field.of("thumbnails", Schema.nullableOf(Schema.arrayOf(Schema.nullableOf(Schema.recordOf(
-        "photo_object",
+        "photoObject",
         Schema.Field.of("id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-        Schema.Field.of("file_name", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-        Schema.Field.of("content_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+        Schema.Field.of("fileName", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+        Schema.Field.of("contentUrl", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
         Schema.Field.of("url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-        Schema.Field.of("mapped_content_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-        Schema.Field.of("content_type", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+        Schema.Field.of("mappedContentUrl", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+        Schema.Field.of("contentType", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
         Schema.Field.of("width", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
         Schema.Field.of("height", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
         Schema.Field.of("size", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
@@ -92,37 +92,37 @@ public class ObjectTypeSchemaConstants {
       Schema.Field.of("inline", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
       Schema.Field.of("deleted", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN)))
     ))))),
-    Schema.Field.of("created_at", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
+    Schema.Field.of("createdAt", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
   );
 
   public static final Schema SCHEMA_TICKET_COMMENTS = Schema.recordOf(
-    "ticket_comments",
+    "ticketComments",
     Schema.Field.of("id", Schema.of(Schema.Type.LONG)),
     Schema.Field.of("type", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("body", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("html_body", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("plain_body", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("htmlBody", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("plainBody", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("public", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
-    Schema.Field.of("author_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("authorId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
     Schema.Field.of("attachments", Schema.nullableOf(Schema.arrayOf(Schema.nullableOf(Schema.recordOf(
-      "attachment_object",
+      "attachmentObject",
       Schema.Field.of("id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-      Schema.Field.of("file_name", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-      Schema.Field.of("content_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+      Schema.Field.of("fileName", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+      Schema.Field.of("contentUrl", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
       Schema.Field.of("url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-      Schema.Field.of("mapped_content_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-      Schema.Field.of("content_type", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+      Schema.Field.of("mappedContentUrl", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+      Schema.Field.of("contentType", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
       Schema.Field.of("width", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
       Schema.Field.of("height", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
       Schema.Field.of("size", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
       Schema.Field.of("thumbnails", Schema.nullableOf(Schema.arrayOf(Schema.nullableOf(Schema.recordOf(
-        "photo_object",
+        "photoObject",
         Schema.Field.of("id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-        Schema.Field.of("file_name", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-        Schema.Field.of("content_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+        Schema.Field.of("fileName", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+        Schema.Field.of("contentUrl", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
         Schema.Field.of("url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-        Schema.Field.of("mapped_content_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-        Schema.Field.of("content_type", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+        Schema.Field.of("mappedContentUrl", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+        Schema.Field.of("contentType", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
         Schema.Field.of("width", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
         Schema.Field.of("height", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
         Schema.Field.of("size", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
@@ -133,48 +133,48 @@ public class ObjectTypeSchemaConstants {
       Schema.Field.of("deleted", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN)))
     ))))),
     Schema.Field.of("via", Schema.nullableOf(Schema.recordOf(
-      "via_object",
+      "viaObject",
       Schema.Field.of("channel", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
       Schema.Field.of("source", Schema.nullableOf(Schema.recordOf(
-        "source_object",
+        "sourceObject",
         Schema.Field.of("from", Schema.nullableOf(Schema.recordOf(
-          "from_object",
-          Schema.Field.of("profile_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+          "fromObject",
+          Schema.Field.of("profileUrl", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
           Schema.Field.of("subject", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-          Schema.Field.of("service_info", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+          Schema.Field.of("serviceInfo", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
           Schema.Field.of("title", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-          Schema.Field.of("topic_name", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+          Schema.Field.of("topicName", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
           Schema.Field.of("id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-          Schema.Field.of("topic_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-          Schema.Field.of("revision_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-          Schema.Field.of("supports_channelback", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+          Schema.Field.of("topicId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+          Schema.Field.of("revisionId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+          Schema.Field.of("supportsChannelback", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
           Schema.Field.of("address", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-          Schema.Field.of("supports_clickthrough", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-          Schema.Field.of("original_recipients", Schema.nullableOf(Schema.arrayOf(
+          Schema.Field.of("supportsClickthrough", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+          Schema.Field.of("originalRecipients", Schema.nullableOf(Schema.arrayOf(
             Schema.nullableOf(Schema.of(Schema.Type.STRING))))),
-          Schema.Field.of("formatted_phone", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-          Schema.Field.of("ticket_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-          Schema.Field.of("facebook_id", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-          Schema.Field.of("registered_integration_service_name", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+          Schema.Field.of("formattedPhone", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+          Schema.Field.of("ticketId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+          Schema.Field.of("facebookId", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+          Schema.Field.of("registeredIntegrationServiceName", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
           Schema.Field.of("deleted", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
           Schema.Field.of("phone", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
           Schema.Field.of("name", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
           Schema.Field.of("username", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
         ))),
         Schema.Field.of("to", Schema.nullableOf(Schema.recordOf(
-          "to_object",
+          "toObject",
           Schema.Field.of("address", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-          Schema.Field.of("profile_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+          Schema.Field.of("profileUrl", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
           Schema.Field.of("phone", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
           Schema.Field.of("name", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-          Schema.Field.of("formatted_phone", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+          Schema.Field.of("formattedPhone", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
           Schema.Field.of("username", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-          Schema.Field.of("facebook_id", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
+          Schema.Field.of("facebookId", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
         ))),
         Schema.Field.of("rel", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
       )))
     ))),
-    Schema.Field.of("created_at", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
+    Schema.Field.of("createdAt", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
   );
 
   public static final Schema SCHEMA_GROUPS = Schema.recordOf(
@@ -183,47 +183,47 @@ public class ObjectTypeSchemaConstants {
     Schema.Field.of("url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("name", Schema.of(Schema.Type.STRING)),
     Schema.Field.of("deleted", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
-    Schema.Field.of("created_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("updated_at", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
+    Schema.Field.of("createdAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("updatedAt", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
   );
 
   public static final Schema SCHEMA_ORGANIZATIONS = Schema.recordOf(
     "organization",
     Schema.Field.of("id", Schema.of(Schema.Type.LONG)),
     Schema.Field.of("url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("external_id", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("externalId", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("name", Schema.of(Schema.Type.STRING)),
-    Schema.Field.of("created_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("updated_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("domain_names", Schema.nullableOf(Schema.arrayOf(
+    Schema.Field.of("createdAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("updatedAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("domainNames", Schema.nullableOf(Schema.arrayOf(
       Schema.nullableOf(Schema.of(Schema.Type.STRING))))),
     Schema.Field.of("details", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("notes", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("group_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-    Schema.Field.of("shared_tickets", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
-    Schema.Field.of("shared_comments", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
+    Schema.Field.of("groupId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("sharedTickets", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
+    Schema.Field.of("sharedComments", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
     Schema.Field.of("tags", Schema.nullableOf(Schema.arrayOf(
       Schema.nullableOf(Schema.of(Schema.Type.STRING))))),
-    Schema.Field.of("organization_fields", Schema.nullableOf(Schema.mapOf(
+    Schema.Field.of("organizationFields", Schema.nullableOf(Schema.mapOf(
       Schema.of(Schema.Type.STRING),
       Schema.of(Schema.Type.STRING))))
   );
 
   public static final Schema SCHEMA_SATISFACTION_RATINGS = Schema.recordOf(
-    "satisfaction_ratings",
+    "satisfactionRatings",
     Schema.Field.of("id", Schema.of(Schema.Type.LONG)),
     Schema.Field.of("url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("assignee_id", Schema.of(Schema.Type.LONG)),
-    Schema.Field.of("group_id", Schema.of(Schema.Type.LONG)),
-    Schema.Field.of("requester_id", Schema.of(Schema.Type.LONG)),
-    Schema.Field.of("ticket_id", Schema.of(Schema.Type.LONG)),
+    Schema.Field.of("assigneeId", Schema.of(Schema.Type.LONG)),
+    Schema.Field.of("groupId", Schema.of(Schema.Type.LONG)),
+    Schema.Field.of("requesterId", Schema.of(Schema.Type.LONG)),
+    Schema.Field.of("ticketId", Schema.of(Schema.Type.LONG)),
     Schema.Field.of("score", Schema.of(Schema.Type.STRING)),
-    Schema.Field.of("created_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("updated_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("createdAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("updatedAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("comment", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("reason", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("reason_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-    Schema.Field.of("reason_code", Schema.nullableOf(Schema.of(Schema.Type.LONG)))
+    Schema.Field.of("reasonId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("reasonCode", Schema.nullableOf(Schema.of(Schema.Type.LONG)))
   );
 
   public static final Schema SCHEMA_TAGS = Schema.recordOf(
@@ -233,118 +233,118 @@ public class ObjectTypeSchemaConstants {
   );
 
   public static final Schema SCHEMA_TICKET_FIELDS = Schema.recordOf(
-    "ticket_fields",
+    "ticketFields",
     Schema.Field.of("id", Schema.of(Schema.Type.LONG)),
     Schema.Field.of("url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("type", Schema.of(Schema.Type.STRING)),
     Schema.Field.of("title", Schema.of(Schema.Type.STRING)),
-    Schema.Field.of("raw_title", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("rawTitle", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("description", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("raw_description", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("rawDescription", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("position", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
     Schema.Field.of("active", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
     Schema.Field.of("required", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
-    Schema.Field.of("collapsed_for_agents", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
-    Schema.Field.of("regexp_for_validation", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("title_in_portal", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("raw_title_in_portal", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("visible_in_portal", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
-    Schema.Field.of("editable_in_portal", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
-    Schema.Field.of("required_in_portal", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
+    Schema.Field.of("collapsedForAgents", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
+    Schema.Field.of("regexpForValidation", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("titleInPortal", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("rawTitleInPortal", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("visibleInPortal", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
+    Schema.Field.of("editableInPortal", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
+    Schema.Field.of("requiredInPortal", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
     Schema.Field.of("tag", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("created_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("updated_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("system_field_options", Schema.nullableOf(Schema.arrayOf(Schema.nullableOf(Schema.recordOf(
-      "system_field_option",
+    Schema.Field.of("createdAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("updatedAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("systemFieldOptions", Schema.nullableOf(Schema.arrayOf(Schema.nullableOf(Schema.recordOf(
+      "systemFieldOption",
       Schema.Field.of("id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
       Schema.Field.of("name", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
       Schema.Field.of("position", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-      Schema.Field.of("raw_name", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+      Schema.Field.of("rawName", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
       Schema.Field.of("url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
       Schema.Field.of("value", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
       Schema.Field.of("default", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN)))
     ))))),
-    Schema.Field.of("custom_field_options", Schema.nullableOf(Schema.arrayOf(Schema.nullableOf(Schema.recordOf(
-      "custom_field_option",
+    Schema.Field.of("customFieldOptions", Schema.nullableOf(Schema.arrayOf(Schema.nullableOf(Schema.recordOf(
+      "customFieldOption",
       Schema.Field.of("id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
       Schema.Field.of("name", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
       Schema.Field.of("position", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-      Schema.Field.of("raw_name", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+      Schema.Field.of("rawName", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
       Schema.Field.of("url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
       Schema.Field.of("value", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
       Schema.Field.of("default", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN)))
     ))))),
-    Schema.Field.of("sub_type_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("subTypeId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
     Schema.Field.of("removable", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
-    Schema.Field.of("agent_description", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
+    Schema.Field.of("agentDescription", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
   );
 
   public static final Schema SCHEMA_TICKET_METRICS = Schema.recordOf(
-    "ticket_metrics",
+    "ticketMetrics",
     Schema.Field.of("id", Schema.of(Schema.Type.LONG)),
-    Schema.Field.of("ticket_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("ticketId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
     Schema.Field.of("url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("group_stations", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-    Schema.Field.of("assignee_stations", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("groupStations", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("assigneeStations", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
     Schema.Field.of("reopens", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
     Schema.Field.of("replies", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-    Schema.Field.of("assignee_updated_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("requester_updated_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("status_updated_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("initially_assigned_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("assigned_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("solved_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("latest_comment_added_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("first_resolution_time_in_minutes", Schema.nullableOf(Schema.recordOf(
-      "first_resolution_time_in_minute",
+    Schema.Field.of("assigneeUpdatedAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("requesterUpdatedAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("statusUpdatedAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("initiallyAssignedAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("assignedAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("solvedAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("latestCommentAddedAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("firstResolutionTimeInMinutes", Schema.nullableOf(Schema.recordOf(
+      "firstResolutionTimeInMinute",
       Schema.Field.of("calendar", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
       Schema.Field.of("business", Schema.nullableOf(Schema.of(Schema.Type.LONG)))
     ))),
-    Schema.Field.of("reply_time_in_minutes", Schema.nullableOf(Schema.recordOf(
-      "reply_time_in_minute",
+    Schema.Field.of("replyTimeInMinutes", Schema.nullableOf(Schema.recordOf(
+      "replyTimeInMinute",
       Schema.Field.of("calendar", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
       Schema.Field.of("business", Schema.nullableOf(Schema.of(Schema.Type.LONG)))
     ))),
-    Schema.Field.of("full_resolution_time_in_minutes", Schema.nullableOf(Schema.recordOf(
-      "full_resolution_time_in_minute",
+    Schema.Field.of("fullResolutionTimeInMinutes", Schema.nullableOf(Schema.recordOf(
+      "fullResolutionTimeInMinute",
       Schema.Field.of("calendar", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
       Schema.Field.of("business", Schema.nullableOf(Schema.of(Schema.Type.LONG)))
     ))),
-    Schema.Field.of("agent_wait_time_in_minutes", Schema.nullableOf(Schema.recordOf(
-      "agent_wait_time_in_minute",
+    Schema.Field.of("agentWaitTimeInMinutes", Schema.nullableOf(Schema.recordOf(
+      "agentWaitTimeInMinute",
       Schema.Field.of("calendar", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
       Schema.Field.of("business", Schema.nullableOf(Schema.of(Schema.Type.LONG)))
     ))),
-    Schema.Field.of("requester_wait_time_in_minutes", Schema.nullableOf(Schema.recordOf(
-      "requester_wait_time_in_minute",
+    Schema.Field.of("requesterWaitTimeInMinutes", Schema.nullableOf(Schema.recordOf(
+      "requesterWaitTimeInMinute",
       Schema.Field.of("calendar", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
       Schema.Field.of("business", Schema.nullableOf(Schema.of(Schema.Type.LONG)))
     ))),
-    Schema.Field.of("created_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("updated_at", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
+    Schema.Field.of("createdAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("updatedAt", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
   );
 
   public static final Schema SCHEMA_TICKET_METRIC_EVENTS = Schema.recordOf(
-    "ticket_metric_events",
+    "ticketMetricEvents",
     Schema.Field.of("id", Schema.of(Schema.Type.LONG)),
-    Schema.Field.of("ticket_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("ticketId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
     Schema.Field.of("metric", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("instance_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("instanceId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
     Schema.Field.of("type", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("time", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("sla", Schema.nullableOf(Schema.recordOf(
-      "sla_object",
+      "slaObject",
       Schema.Field.of("target", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-      Schema.Field.of("business_hours", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
+      Schema.Field.of("businessHours", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
       Schema.Field.of("policy", Schema.nullableOf(Schema.recordOf(
-        "policy_object",
+        "policyObject",
         Schema.Field.of("id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
         Schema.Field.of("title", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
         Schema.Field.of("description", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
       )))
     ))),
     Schema.Field.of("status", Schema.nullableOf(Schema.recordOf(
-      "status_object",
+      "statusObject",
       Schema.Field.of("calendar", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
       Schema.Field.of("business", Schema.nullableOf(Schema.of(Schema.Type.LONG)))
     ))),
@@ -355,113 +355,113 @@ public class ObjectTypeSchemaConstants {
     "tickets",
     Schema.Field.of("id", Schema.of(Schema.Type.LONG)),
     Schema.Field.of("url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("external_id", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("externalId", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("type", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("subject", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("raw_subject", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("rawSubject", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("description", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("priority", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("status", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("recipient", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("requester_id", Schema.of(Schema.Type.LONG)),
-    Schema.Field.of("submitter_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-    Schema.Field.of("assignee_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-    Schema.Field.of("organization_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-    Schema.Field.of("group_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-    Schema.Field.of("collaborator_ids", Schema.nullableOf(Schema.arrayOf(
+    Schema.Field.of("requesterId", Schema.of(Schema.Type.LONG)),
+    Schema.Field.of("submitterId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("assigneeId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("organizationId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("groupId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("collaboratorIds", Schema.nullableOf(Schema.arrayOf(
       Schema.nullableOf(Schema.of(Schema.Type.LONG))))),
     Schema.Field.of("collaborators", Schema.nullableOf(Schema.arrayOf(Schema.nullableOf(Schema.recordOf(
       "collaborator",
       Schema.Field.of("name", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
       Schema.Field.of("email", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
     ))))),
-    Schema.Field.of("email_cc_ids", Schema.nullableOf(Schema.arrayOf(
+    Schema.Field.of("emailCcIds", Schema.nullableOf(Schema.arrayOf(
       Schema.nullableOf(Schema.of(Schema.Type.LONG))))),
-    Schema.Field.of("follower_ids", Schema.nullableOf(Schema.arrayOf(
+    Schema.Field.of("followerIds", Schema.nullableOf(Schema.arrayOf(
       Schema.nullableOf(Schema.of(Schema.Type.LONG))))),
-    Schema.Field.of("forum_topic_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-    Schema.Field.of("problem_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-    Schema.Field.of("has_incidents", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
-    Schema.Field.of("due_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("forumTopicId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("problemId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("hasIncidents", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
+    Schema.Field.of("dueAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("tags", Schema.nullableOf(Schema.arrayOf(
       Schema.nullableOf(Schema.of(Schema.Type.STRING))))),
     Schema.Field.of("via", Schema.nullableOf(Schema.recordOf(
-      "via_object",
+      "viaObject",
       Schema.Field.of("channel", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
       Schema.Field.of("source", Schema.nullableOf(Schema.recordOf(
-        "source_object",
+        "sourceObject",
         Schema.Field.of("from", Schema.nullableOf(Schema.recordOf(
-          "from_object",
-          Schema.Field.of("profile_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+          "fromObject",
+          Schema.Field.of("profileUrl", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
           Schema.Field.of("subject", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-          Schema.Field.of("service_info", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+          Schema.Field.of("serviceInfo", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
           Schema.Field.of("title", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-          Schema.Field.of("topic_name", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+          Schema.Field.of("topicName", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
           Schema.Field.of("id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-          Schema.Field.of("topic_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-          Schema.Field.of("revision_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-          Schema.Field.of("supports_channelback", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+          Schema.Field.of("topicId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+          Schema.Field.of("revisionId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+          Schema.Field.of("supportsChannelback", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
           Schema.Field.of("address", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-          Schema.Field.of("supports_clickthrough", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-          Schema.Field.of("original_recipients", Schema.nullableOf(Schema.arrayOf(
+          Schema.Field.of("supportsClickthrough", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+          Schema.Field.of("originalRecipients", Schema.nullableOf(Schema.arrayOf(
             Schema.nullableOf(Schema.of(Schema.Type.STRING))))),
-          Schema.Field.of("formatted_phone", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-          Schema.Field.of("ticket_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-          Schema.Field.of("facebook_id", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-          Schema.Field.of("registered_integration_service_name", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+          Schema.Field.of("formattedPhone", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+          Schema.Field.of("ticketId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+          Schema.Field.of("facebookId", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+          Schema.Field.of("registeredIntegrationServiceName", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
           Schema.Field.of("deleted", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
           Schema.Field.of("phone", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
           Schema.Field.of("name", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
           Schema.Field.of("username", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
         ))),
         Schema.Field.of("to", Schema.nullableOf(Schema.recordOf(
-          "to_object",
+          "toObject",
           Schema.Field.of("address", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-          Schema.Field.of("profile_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+          Schema.Field.of("profileUrl", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
           Schema.Field.of("phone", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
           Schema.Field.of("name", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-          Schema.Field.of("formatted_phone", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+          Schema.Field.of("formattedPhone", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
           Schema.Field.of("username", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-          Schema.Field.of("facebook_id", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
+          Schema.Field.of("facebookId", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
         ))),
         Schema.Field.of("rel", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
       )))
     ))),
-    Schema.Field.of("custom_fields", Schema.nullableOf(Schema.arrayOf(Schema.nullableOf(Schema.recordOf(
-      "custom_field",
+    Schema.Field.of("customFields", Schema.nullableOf(Schema.arrayOf(Schema.nullableOf(Schema.recordOf(
+      "customField",
       Schema.Field.of("id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
       Schema.Field.of("value", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
     ))))),
-    Schema.Field.of("satisfaction_rating", Schema.nullableOf(Schema.recordOf(
-      "satisfaction_rating_object",
+    Schema.Field.of("satisfactionRating", Schema.nullableOf(Schema.recordOf(
+      "satisfactionRatingObject",
       Schema.Field.of("id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
       Schema.Field.of("url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-      Schema.Field.of("assignee_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-      Schema.Field.of("group_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-      Schema.Field.of("requester_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-      Schema.Field.of("ticket_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+      Schema.Field.of("assigneeId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+      Schema.Field.of("groupId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+      Schema.Field.of("requesterId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+      Schema.Field.of("ticketId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
       Schema.Field.of("score", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-      Schema.Field.of("created_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-      Schema.Field.of("updated_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+      Schema.Field.of("createdAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+      Schema.Field.of("updatedAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
       Schema.Field.of("comment", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
       Schema.Field.of("reason", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-      Schema.Field.of("reason_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-      Schema.Field.of("reason_code", Schema.nullableOf(Schema.of(Schema.Type.LONG)))
+      Schema.Field.of("reasonId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+      Schema.Field.of("reasonCode", Schema.nullableOf(Schema.of(Schema.Type.LONG)))
     ))),
-    Schema.Field.of("sharing_agreement_ids", Schema.nullableOf(Schema.arrayOf(
+    Schema.Field.of("sharingAgreementIds", Schema.nullableOf(Schema.arrayOf(
       Schema.nullableOf(Schema.of(Schema.Type.LONG))))),
-    Schema.Field.of("followup_ids", Schema.nullableOf(Schema.arrayOf(
+    Schema.Field.of("followupIds", Schema.nullableOf(Schema.arrayOf(
       Schema.nullableOf(Schema.of(Schema.Type.LONG))))),
-    Schema.Field.of("via_followup_source_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-    Schema.Field.of("macro_ids", Schema.nullableOf(Schema.arrayOf(
+    Schema.Field.of("viaFollowupSourceId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("macroIds", Schema.nullableOf(Schema.arrayOf(
       Schema.nullableOf(Schema.of(Schema.Type.LONG))))),
-    Schema.Field.of("ticket_form_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-    Schema.Field.of("brand_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-    Schema.Field.of("allow_channelback", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
-    Schema.Field.of("allow_attachments", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
-    Schema.Field.of("is_public", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
-    Schema.Field.of("created_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("updated_at", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
+    Schema.Field.of("ticketFormId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("brandId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("allowChannelback", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
+    Schema.Field.of("allowAttachments", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
+    Schema.Field.of("isPublic", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
+    Schema.Field.of("createdAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("updatedAt", Schema.nullableOf(Schema.of(Schema.Type.STRING)))
   );
 
   public static final Schema SCHEMA_USERS = Schema.recordOf(
@@ -471,41 +471,41 @@ public class ObjectTypeSchemaConstants {
     Schema.Field.of("name", Schema.of(Schema.Type.STRING)),
     Schema.Field.of("active", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
     Schema.Field.of("alias", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("chat_only", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
-    Schema.Field.of("created_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("custom_role_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-    Schema.Field.of("role_type", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("chatOnly", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
+    Schema.Field.of("createdAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("customRoleId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("roleType", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
     Schema.Field.of("details", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("external_id", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("last_login_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("externalId", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("lastLoginAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("locale", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("locale_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("localeId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
     Schema.Field.of("moderator", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
     Schema.Field.of("notes", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("only_public_comments", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
-    Schema.Field.of("organization_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-    Schema.Field.of("default_group_id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("onlyPublicComments", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
+    Schema.Field.of("organizationId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
+    Schema.Field.of("defaultGroupId", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
     Schema.Field.of("phone", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("shared_phone_number", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
+    Schema.Field.of("sharedPhoneNumber", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
     Schema.Field.of("photo", Schema.nullableOf(Schema.recordOf(
-      "attachment_object",
+      "attachmentObject",
       Schema.Field.of("id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-      Schema.Field.of("file_name", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-      Schema.Field.of("content_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+      Schema.Field.of("fileName", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+      Schema.Field.of("contentUrl", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
       Schema.Field.of("url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-      Schema.Field.of("mapped_content_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-      Schema.Field.of("content_type", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+      Schema.Field.of("mappedContentUrl", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+      Schema.Field.of("contentType", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
       Schema.Field.of("width", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
       Schema.Field.of("height", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
       Schema.Field.of("size", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
       Schema.Field.of("thumbnails", Schema.nullableOf(Schema.arrayOf(Schema.nullableOf(Schema.recordOf(
-        "photo_object",
+        "photoObject",
         Schema.Field.of("id", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
-        Schema.Field.of("file_name", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-        Schema.Field.of("content_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+        Schema.Field.of("fileName", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+        Schema.Field.of("contentUrl", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
         Schema.Field.of("url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-        Schema.Field.of("mapped_content_url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-        Schema.Field.of("content_type", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+        Schema.Field.of("mappedContentUrl", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+        Schema.Field.of("contentType", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
         Schema.Field.of("width", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
         Schema.Field.of("height", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
         Schema.Field.of("size", Schema.nullableOf(Schema.of(Schema.Type.LONG))),
@@ -515,23 +515,23 @@ public class ObjectTypeSchemaConstants {
       Schema.Field.of("inline", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
       Schema.Field.of("deleted", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN)))
     ))),
-    Schema.Field.of("restricted_agent", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
+    Schema.Field.of("restrictedAgent", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
     Schema.Field.of("role", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("shared", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
-    Schema.Field.of("shared_agent", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
+    Schema.Field.of("sharedAgent", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
     Schema.Field.of("signature", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("suspended", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
     Schema.Field.of("tags", Schema.nullableOf(Schema.arrayOf(
       Schema.nullableOf(Schema.of(Schema.Type.STRING))))),
-    Schema.Field.of("ticket_restriction", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("time_zone", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("two_factor_auth_enabled", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
-    Schema.Field.of("updated_at", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("ticketRestriction", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("timeZone", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
+    Schema.Field.of("twoFactorAuthEnabled", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
+    Schema.Field.of("updatedAt", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
     Schema.Field.of("url", Schema.nullableOf(Schema.of(Schema.Type.STRING))),
-    Schema.Field.of("user_fields", Schema.nullableOf(Schema.mapOf(
+    Schema.Field.of("userFields", Schema.nullableOf(Schema.mapOf(
       Schema.of(Schema.Type.STRING),
       Schema.of(Schema.Type.STRING)))),
     Schema.Field.of("verified", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN))),
-    Schema.Field.of("report_csv", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN)))
+    Schema.Field.of("reportCsv", Schema.nullableOf(Schema.of(Schema.Type.BOOLEAN)))
   );
 }

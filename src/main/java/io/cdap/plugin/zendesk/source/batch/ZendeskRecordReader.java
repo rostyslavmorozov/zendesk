@@ -23,6 +23,7 @@ import io.cdap.cdap.api.data.schema.Schema;
 import io.cdap.cdap.format.StructuredRecordStringConverter;
 import io.cdap.plugin.zendesk.source.batch.http.CommentsPagedIterator;
 import io.cdap.plugin.zendesk.source.batch.http.PagedIterator;
+import io.cdap.plugin.zendesk.source.batch.util.ZendeskBatchSourceConstants;
 import io.cdap.plugin.zendesk.source.common.ObjectType;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.io.NullWritable;
@@ -33,8 +34,6 @@ import org.apache.hadoop.mapreduce.TaskAttemptContext;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.Iterator;
-
-import static io.cdap.plugin.zendesk.source.batch.util.ZendeskBatchSourceConstants.PROPERTY_CONFIG_JSON;
 
 /**
  * RecordReader implementation, which reads object from Zendesk using
@@ -60,8 +59,8 @@ public class ZendeskRecordReader extends RecordReader<NullWritable, StructuredRe
   public void initialize(InputSplit split,
                          TaskAttemptContext taskAttemptContext) throws IOException, InterruptedException {
     Configuration conf = taskAttemptContext.getConfiguration();
-    String configJson = conf.get(PROPERTY_CONFIG_JSON);
-    BaseZendeskBatchSourceConfig config = GSON.fromJson(configJson, BaseZendeskBatchSourceConfig.class);
+    String configJson = conf.get(ZendeskBatchSourceConstants.PROPERTY_CONFIG_JSON);
+    ZendeskBatchSourceConfig config = GSON.fromJson(configJson, ZendeskBatchSourceConfig.class);
     pagedIterator = createIterator(config);
   }
 
@@ -78,12 +77,7 @@ public class ZendeskRecordReader extends RecordReader<NullWritable, StructuredRe
   @Override
   public StructuredRecord getCurrentValue() throws IOException, InterruptedException {
     String next = pagedIterator.next();
-    StructuredRecord record = StructuredRecordStringConverter.fromJsonString(next, schema);
-    StructuredRecord.Builder builder = StructuredRecord.builder(schema);
-    for (Schema.Field field : schema.getFields()) {
-      builder.set(field.getName(), record.get(field.getName()));
-    }
-    return builder.build();
+    return StructuredRecordStringConverter.fromJsonString(next, schema);
   }
 
   @Override
@@ -98,7 +92,7 @@ public class ZendeskRecordReader extends RecordReader<NullWritable, StructuredRe
     }
   }
 
-  private Iterator<String> createIterator(BaseZendeskBatchSourceConfig config) {
+  private Iterator<String> createIterator(ZendeskBatchSourceConfig config) {
     if (objectType == ObjectType.ARTICLE_COMMENTS || objectType == ObjectType.POST_COMMENTS) {
       return new CommentsPagedIterator(
         new PagedIterator(config, ObjectType.USERS_SIMPLE, subdomain),

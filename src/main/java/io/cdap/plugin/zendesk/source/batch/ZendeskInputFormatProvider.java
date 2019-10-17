@@ -20,13 +20,10 @@ import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import io.cdap.cdap.api.data.batch.InputFormatProvider;
+import io.cdap.plugin.zendesk.source.batch.util.ZendeskBatchSourceConstants;
 
 import java.util.List;
 import java.util.Map;
-
-import static io.cdap.plugin.zendesk.source.batch.util.ZendeskBatchSourceConstants.PROPERTY_CONFIG_JSON;
-import static io.cdap.plugin.zendesk.source.batch.util.ZendeskBatchSourceConstants.PROPERTY_OBJECTS_JSON;
-import static io.cdap.plugin.zendesk.source.batch.util.ZendeskBatchSourceConstants.PROPERTY_SCHEMAS_JSON;
 
 /**
  * InputFormatProvider used by cdap to provide configurations to mapreduce job.
@@ -40,9 +37,9 @@ public class ZendeskInputFormatProvider implements InputFormatProvider {
                                     List<String> objectsToPull,
                                     Map<String, String> schemas) {
     this.conf = new ImmutableMap.Builder<String, String>()
-      .put(PROPERTY_CONFIG_JSON, GSON.toJson(config))
-      .put(PROPERTY_OBJECTS_JSON, GSON.toJson(objectsToPull))
-      .put(PROPERTY_SCHEMAS_JSON, GSON.toJson(schemas))
+      .put(ZendeskBatchSourceConstants.PROPERTY_CONFIG_JSON, GSON.toJson(config))
+      .put(ZendeskBatchSourceConstants.PROPERTY_OBJECTS_JSON, GSON.toJson(objectsToPull))
+      .put(ZendeskBatchSourceConstants.PROPERTY_SCHEMAS_JSON, GSON.toJson(schemas))
       .build();
   }
 
