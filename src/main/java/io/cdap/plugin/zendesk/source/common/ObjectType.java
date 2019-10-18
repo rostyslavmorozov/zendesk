@@ -147,7 +147,7 @@ public enum ObjectType {
       .findFirst()
       .orElseThrow(() -> {
         collector.addFailure(String.format("Unsupported schema for object %s. ", value),
-                             "Ensure 'Objects to Pull' is selected.")
+                             "Ensure 'Object to Pull' is selected.")
           .withConfigProperty(BaseZendeskSourceConfig.PROPERTY_OBJECTS_TO_PULL);
         return collector.getOrThrowException();
       });

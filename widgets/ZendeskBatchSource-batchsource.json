@@ -32,7 +32,7 @@
         },
         {
           "name": "objectsToPull",
-          "label": "Objects to Pull",
+          "label": "Object to Pull",
           "widget-type": "select",
           "widget-attributes": {
             "default": "Groups",

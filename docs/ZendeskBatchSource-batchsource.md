@@ -26,7 +26,7 @@ for API Token generation.
 
 **Subdomains:** List of Zendesk Subdomains to read object from.
 
-**Objects to Pull:** Objects to pull from Zendesk API.
+**Object to Pull:** Objects to pull from Zendesk API.
 
 **Start Date:** Filter data to only include records where Zendesk modified date is greater than 
 or equal to the specified date. The date must be provided in the date format:
