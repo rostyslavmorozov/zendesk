@@ -23,7 +23,6 @@ import com.github.rholder.retry.WaitStrategies;
 import com.google.common.base.Strings;
 import io.cdap.plugin.zendesk.source.batch.ZendeskBatchSourceConfig;
 import io.cdap.plugin.zendesk.source.common.ObjectType;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -109,15 +108,15 @@ public class HttpUtil {
       additionalParams.add(String.format("start_time=%s", epochSecond));
     }
     if (objectType == ObjectType.SATISFACTION_RATINGS) {
-      if (!StringUtils.isBlank(config.getStartDate())) {
+      if (!Strings.isNullOrEmpty(config.getStartDate())) {
         long epochSecond = getEpochSecond(config.getStartDate());
         additionalParams.add(String.format("start_time=%s", epochSecond));
       }
-      if (!StringUtils.isBlank(config.getEndDate())) {
+      if (!Strings.isNullOrEmpty(config.getEndDate())) {
         long epochSecond = getEpochSecond(config.getEndDate());
         additionalParams.add(String.format("end_time=%s", epochSecond));
       }
-      if (!StringUtils.isBlank(config.getSatisfactionRatingsScore())) {
+      if (!Strings.isNullOrEmpty(config.getSatisfactionRatingsScore())) {
         additionalParams.add(String.format(
           "score=%s", SATISFACTION_RATINGS_SCORE_MAP.get(config.getSatisfactionRatingsScore())));
       }

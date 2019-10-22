@@ -47,6 +47,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -74,6 +75,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -106,6 +108,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -135,6 +138,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -162,6 +166,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -189,6 +194,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -220,6 +226,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -251,6 +258,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -282,6 +290,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -315,6 +324,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -338,11 +348,11 @@ public class PagedIteratorTest {
   public void testGetJsonValuesFromResponse() throws IOException {
     ImmutableMap<String, Object> response = ImmutableMap.of(
       "organizations", Arrays.asList(
-        ImmutableMap.of("key", "val1"),
-        ImmutableMap.of("key", "val2")));
+        new HashMap<>(ImmutableMap.of("key", "val1")),
+        new HashMap<>(ImmutableMap.of("key", "val2"))));
     List<String> expected = new ArrayList<>();
-    expected.add("{\"key\":\"val1\"}");
-    expected.add("{\"key\":\"val2\"}");
+    expected.add("{\"key\":\"val1\",\"object\":\"Organizations\"}");
+    expected.add("{\"key\":\"val2\",\"object\":\"Organizations\"}");
 
     ObjectType objectType = ObjectType.ORGANIZATIONS;
     String subdomain = "subdomain";
@@ -352,6 +362,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -378,11 +389,11 @@ public class PagedIteratorTest {
       "ticket_events",
       Collections.singletonList(ImmutableMap.of(
         "child_events", Arrays.asList(
-          ImmutableMap.of("key", "val1"),
-          ImmutableMap.of("key", "val2")))));
+          new HashMap<>(ImmutableMap.of("key", "val1")),
+          new HashMap<>(ImmutableMap.of("key", "val2"))))));
     List<String> expected = new ArrayList<>();
-    expected.add("{\"key\":\"val1\"}");
-    expected.add("{\"key\":\"val2\"}");
+    expected.add("{\"key\":\"val1\",\"object\":\"Ticket Comments\"}");
+    expected.add("{\"key\":\"val2\",\"object\":\"Ticket Comments\"}");
 
     ObjectType objectType = ObjectType.TICKET_COMMENTS;
     String subdomain = "subdomain";
@@ -392,6 +403,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -490,6 +502,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -522,6 +535,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -554,6 +568,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -581,6 +596,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -608,6 +624,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -640,6 +657,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -672,6 +690,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -699,6 +718,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -726,6 +746,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -747,8 +768,8 @@ public class PagedIteratorTest {
   public void testHasNext() throws IOException {
     ImmutableMap<String, Object> response = ImmutableMap.of(
       "groups", Arrays.asList(
-        ImmutableMap.of("key", "val1"),
-        ImmutableMap.of("key", "val2")));
+        new HashMap<>(ImmutableMap.of("key", "val1")),
+        new HashMap<>(ImmutableMap.of("key", "val2"))));
 
     ObjectType objectType = ObjectType.GROUPS;
     String subdomain = "subdomain";
@@ -758,6 +779,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -779,7 +801,7 @@ public class PagedIteratorTest {
       Assert.assertTrue(actual);
 
       String next = pagedIterator.next();
-      Assert.assertEquals("{\"key\":\"val1\"}", next);
+      Assert.assertEquals("{\"key\":\"val1\",\"object\":\"Groups\"}", next);
     }
   }
 
@@ -787,7 +809,7 @@ public class PagedIteratorTest {
   public void testHasNextPagination() throws IOException {
     Map<String, Object> response = new HashMap<>();
     response.put("groups", Collections.singletonList(
-      ImmutableMap.of("key", "val1")));
+      new HashMap<>(ImmutableMap.of("key", "val1"))));
     response.put("next_page", "some_page");
 
     ObjectType objectType = ObjectType.GROUPS;
@@ -798,6 +820,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -819,17 +842,17 @@ public class PagedIteratorTest {
       Assert.assertTrue(actual);
 
       String next = pagedIterator.next();
-      Assert.assertEquals("{\"key\":\"val1\"}", next);
+      Assert.assertEquals("{\"key\":\"val1\",\"object\":\"Groups\"}", next);
 
       response.put("groups", Collections.singletonList(
-        ImmutableMap.of("key", "val2")));
+        new HashMap<>(ImmutableMap.of("key", "val2"))));
       response.put("next_page", "null");
 
       actual = pagedIterator.hasNext();
       Assert.assertTrue(actual);
 
       next = pagedIterator.next();
-      Assert.assertEquals("{\"key\":\"val2\"}", next);
+      Assert.assertEquals("{\"key\":\"val2\",\"object\":\"Groups\"}", next);
 
       actual = pagedIterator.hasNext();
       Assert.assertFalse(actual);
@@ -840,7 +863,7 @@ public class PagedIteratorTest {
   public void testHasNextCurrentEmptyNextPageNull() throws IOException {
     ImmutableMap<String, Object> response = ImmutableMap.of(
       "groups", Collections.singletonList(
-        ImmutableMap.of("key", "val1")));
+        new HashMap<>(ImmutableMap.of("key", "val1"))));
 
     ObjectType objectType = ObjectType.GROUPS;
     String subdomain = "subdomain";
@@ -850,6 +873,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -871,7 +895,7 @@ public class PagedIteratorTest {
       Assert.assertTrue(actual);
 
       String next = pagedIterator.next();
-      Assert.assertEquals("{\"key\":\"val1\"}", next);
+      Assert.assertEquals("{\"key\":\"val1\",\"object\":\"Groups\"}", next);
 
       actual = pagedIterator.hasNext();
       Assert.assertFalse(actual);
@@ -882,7 +906,7 @@ public class PagedIteratorTest {
   public void testHasNextCurrentEmptyNextPageNullString() throws IOException {
     ImmutableMap<String, Object> response = ImmutableMap.of(
       "groups", Collections.singletonList(
-        ImmutableMap.of("key", "val1")),
+        new HashMap<>(ImmutableMap.of("key", "val1"))),
       "next_page", "null");
 
     ObjectType objectType = ObjectType.GROUPS;
@@ -893,6 +917,7 @@ public class PagedIteratorTest {
       "apiToken",
       subdomain,
       "Groups",
+      "",
       "2019-01-01T23:01:01Z",
       "2019-01-01T23:01:01Z",
       "satisfactionRatingsScore",
@@ -914,7 +939,7 @@ public class PagedIteratorTest {
       Assert.assertTrue(actual);
 
       String next = pagedIterator.next();
-      Assert.assertEquals("{\"key\":\"val1\"}", next);
+      Assert.assertEquals("{\"key\":\"val1\",\"object\":\"Groups\"}", next);
 
       actual = pagedIterator.hasNext();
       Assert.assertFalse(actual);

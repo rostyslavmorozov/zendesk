@@ -35,7 +35,8 @@ public class BaseZendeskSourceConfigTest {
       "email@test.com",
       "apiToken",
       "subdomain",
-      "Groups");
+      "Groups",
+      "");
 
     MockFailureCollector collector = new MockFailureCollector(MOCK_STAGE);
     config.validate(collector);
@@ -49,7 +50,8 @@ public class BaseZendeskSourceConfigTest {
       "email",
       "apiToken",
       "subdomain",
-      "Groups");
+      "Groups",
+      "");
 
     MockFailureCollector collector = new MockFailureCollector(MOCK_STAGE);
     config.validate(collector);
@@ -59,5 +61,42 @@ public class BaseZendeskSourceConfigTest {
     Assert.assertEquals(1, causeList.size());
     Assert.assertEquals(BaseZendeskSourceConfig.PROPERTY_ADMIN_EMAIL, collector.getValidationFailures().get(0)
       .getCauses().get(0).getAttribute(CauseAttributes.STAGE_CONFIG));
+  }
+
+  @Test
+  public void testValidateObjectsToPullEmpty() {
+    BaseZendeskSourceConfig config = new BaseZendeskSourceConfig(
+      "reference",
+      "email@test.com",
+      "apiToken",
+      "subdomain",
+      "",
+      "");
+
+    MockFailureCollector collector = new MockFailureCollector(MOCK_STAGE);
+    config.validate(collector);
+    Assert.assertTrue(collector.getValidationFailures().isEmpty());
+  }
+
+  @Test
+  public void testValidateObjectsToSkip() {
+    BaseZendeskSourceConfig config = new BaseZendeskSourceConfig(
+      "reference",
+      "email@test.com",
+      "apiToken",
+      "subdomain",
+      "Groups",
+      "Groups");
+
+    MockFailureCollector collector = new MockFailureCollector(MOCK_STAGE);
+    config.validate(collector);
+
+    Assert.assertEquals(1, collector.getValidationFailures().size());
+    List<ValidationFailure.Cause> causeList = collector.getValidationFailures().get(0).getCauses();
+    Assert.assertEquals(2, causeList.size());
+    Assert.assertEquals(BaseZendeskSourceConfig.PROPERTY_OBJECTS_TO_PULL, collector.getValidationFailures().get(0)
+      .getCauses().get(0).getAttribute(CauseAttributes.STAGE_CONFIG));
+    Assert.assertEquals(BaseZendeskSourceConfig.PROPERTY_OBJECTS_TO_SKIP, collector.getValidationFailures().get(0)
+      .getCauses().get(1).getAttribute(CauseAttributes.STAGE_CONFIG));
   }
 }

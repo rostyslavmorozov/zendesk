@@ -27,7 +27,6 @@ import io.cdap.plugin.zendesk.source.batch.http.ConnectionTimeoutException;
 import io.cdap.plugin.zendesk.source.batch.http.PagedIterator;
 import io.cdap.plugin.zendesk.source.common.ObjectType;
 import io.cdap.plugin.zendesk.source.common.config.BaseZendeskSourceConfig;
-import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.time.ZonedDateTime;
@@ -111,7 +110,8 @@ public class ZendeskBatchSourceConfig extends BaseZendeskSourceConfig {
                                   String adminEmail,
                                   String apiToken,
                                   String subdomains,
-                                  String objectsToPull,
+                                  @Nullable String objectsToPull,
+                                  @Nullable String objectsToSkip,
                                   @Nullable String startDate,
                                   @Nullable String endDate,
                                   @Nullable String satisfactionRatingsScore,
@@ -122,7 +122,8 @@ public class ZendeskBatchSourceConfig extends BaseZendeskSourceConfig {
                                   Integer readTimeout,
                                   String zendeskBaseUrl,
                                   @Nullable String schema) {
-    super(referenceName, adminEmail, apiToken, subdomains, objectsToPull);
+    super(referenceName, adminEmail, apiToken, subdomains,
+          objectsToPull, objectsToSkip);
     this.startDate = startDate;
     this.endDate = endDate;
     this.satisfactionRatingsScore = satisfactionRatingsScore;
@@ -196,10 +197,10 @@ public class ZendeskBatchSourceConfig extends BaseZendeskSourceConfig {
     if (!containsMacro(PROPERTY_START_DATE)
       && !containsMacro(PROPERTY_OBJECTS_TO_PULL)) {
       try {
-        boolean batchObjectSelected = getObjectsToPull().stream()
+        boolean batchObjectSelected = getObjects().stream()
           .map(ObjectType::fromString)
           .anyMatch(ObjectType::isBatch);
-        if (batchObjectSelected && StringUtils.isBlank(startDate)) {
+        if (batchObjectSelected && Strings.isNullOrEmpty(startDate)) {
           collector.addFailure(
             "Property 'Start Date' must not be empty.",
             "Ensure 'Start Date' is specified for objects: " +
@@ -239,7 +240,7 @@ public class ZendeskBatchSourceConfig extends BaseZendeskSourceConfig {
     if (containsMacro(propertyName)) {
       return;
     }
-    if (StringUtils.isBlank(datetime)) {
+    if (Strings.isNullOrEmpty(datetime)) {
       return;
     }
     try {

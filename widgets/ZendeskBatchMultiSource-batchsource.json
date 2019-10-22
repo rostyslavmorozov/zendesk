@@ -32,32 +32,128 @@
         },
         {
           "name": "objectsToPull",
-          "label": "Object to Pull",
-          "widget-type": "select",
+          "label": "Objects to Pull",
+          "widget-type": "multi-select",
           "widget-attributes": {
-            "default": "Groups",
-            "values": [
-              "Article Comments",
-              "Post Comments",
-              "Requests Comments",
-              "Ticket Comments",
-              "Groups",
-              "Organizations",
-              "Satisfaction Ratings",
-              "Tags",
-              "Ticket Fields",
-              "Ticket Metrics",
-              "Ticket Metric Events",
-              "Tickets",
-              "Users"
+            "delimiter": ",",
+            "defaultValue": [],
+            "options": [
+              {
+                "id": "Article Comments",
+                "label": "Article Comments"
+              },
+              {
+                "id": "Post Comments",
+                "label": "Post Comments"
+              },
+              {
+                "id": "Requests Comments",
+                "label": "Requests Comments"
+              },
+              {
+                "id": "Ticket Comments",
+                "label": "Ticket Comments"
+              },
+              {
+                "id": "Groups",
+                "label": "Groups"
+              },
+              {
+                "id": "Organizations",
+                "label": "Organizations"
+              },
+              {
+                "id": "Satisfaction Ratings",
+                "label": "Satisfaction Ratings"
+              },
+              {
+                "id": "Tags",
+                "label": "Tags"
+              },
+              {
+                "id": "Ticket Fields",
+                "label": "Ticket Fields"
+              },
+              {
+                "id": "Ticket Metrics",
+                "label": "Ticket Metrics"
+              },
+              {
+                "id": "Ticket Metric Events",
+                "label": "Ticket Metric Events"
+              },
+              {
+                "id": "Tickets",
+                "label": "Tickets"
+              },
+              {
+                "id": "Users",
+                "label": "Users"
+              }
             ]
           }
         },
         {
-          "widget-type": "hidden",
           "name": "objectsToSkip",
+          "label": "Objects to Skip",
+          "widget-type": "multi-select",
           "widget-attributes": {
-            "default": ""
+            "delimiter": ",",
+            "defaultValue": [],
+            "options": [
+              {
+                "id": "Article Comments",
+                "label": "Article Comments"
+              },
+              {
+                "id": "Post Comments",
+                "label": "Post Comments"
+              },
+              {
+                "id": "Requests Comments",
+                "label": "Requests Comments"
+              },
+              {
+                "id": "Ticket Comments",
+                "label": "Ticket Comments"
+              },
+              {
+                "id": "Groups",
+                "label": "Groups"
+              },
+              {
+                "id": "Organizations",
+                "label": "Organizations"
+              },
+              {
+                "id": "Satisfaction Ratings",
+                "label": "Satisfaction Ratings"
+              },
+              {
+                "id": "Tags",
+                "label": "Tags"
+              },
+              {
+                "id": "Ticket Fields",
+                "label": "Ticket Fields"
+              },
+              {
+                "id": "Ticket Metrics",
+                "label": "Ticket Metrics"
+              },
+              {
+                "id": "Ticket Metric Events",
+                "label": "Ticket Metric Events"
+              },
+              {
+                "id": "Tickets",
+                "label": "Tickets"
+              },
+              {
+                "id": "Users",
+                "label": "Users"
+              }
+            ]
           }
         },
         {
@@ -165,36 +261,6 @@
       "widget-attributes": {
         "schema-default-type": "string"
       }
-    }
-  ],
-  "filters": [
-    {
-      "name": "Start Date Filter",
-      "condition": {
-        "expression": "objectsToPull == 'Ticket Comments' || objectsToPull == 'Organizations' || objectsToPull == 'Satisfaction Ratings' || objectsToPull == 'Ticket Metric Events' || objectsToPull == 'Tickets' || objectsToPull == 'Users'"
-      },
-      "show": [
-        {
-          "name": "startDate",
-          "type": "property"
-        }
-      ]
-    },
-    {
-      "name": "Satisfaction Ratings Filter",
-      "condition": {
-        "expression": "objectsToPull == 'Satisfaction Ratings'"
-      },
-      "show": [
-        {
-          "name": "endDate",
-          "type": "property"
-        },
-        {
-          "name": "satisfactionRatingsScore",
-          "type": "property"
-        }
-      ]
     }
   ]
 }

@@ -172,10 +172,7 @@ public class PagedIterator implements Iterator<String>, Closeable {
     if (objectType.getChildKey() == null) {
       return responseObjects
         .stream()
-        .map(map -> {
-          replaceKeys((Map) map, objectType.getObjectSchema());
-          return GSON.toJson(map);
-        })
+        .map(this::objectMapToJsonString)
         .iterator();
     }
 
@@ -184,11 +181,15 @@ public class PagedIterator implements Iterator<String>, Closeable {
       .flatMap(responseObject ->
                  ((List<Object>) ((Map) responseObject).get(objectType.getChildKey()))
                    .stream()
-                   .map(map -> {
-                     replaceKeys((Map) map, objectType.getObjectSchema());
-                     return GSON.toJson(map);
-                   }))
+                   .map(this::objectMapToJsonString))
       .iterator();
+  }
+
+  private String objectMapToJsonString(Object map) {
+    Map objectMap = (Map) map;
+    replaceKeys(objectMap, objectType.getObjectSchema());
+    objectMap.put("object", objectType.getObjectName());
+    return GSON.toJson(map);
   }
 
   @VisibleForTesting
