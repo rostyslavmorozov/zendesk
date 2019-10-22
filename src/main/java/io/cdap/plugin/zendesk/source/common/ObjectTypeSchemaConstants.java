@@ -477,7 +477,7 @@ public class ObjectTypeSchemaConstants {
   );
 
   public static final Schema SCHEMA_USERS = Schema.recordOf(
-    "tickets",
+    "users",
     Schema.Field.of("id", Schema.of(Schema.Type.LONG)),
     Schema.Field.of("object", Schema.of(Schema.Type.STRING)),
     Schema.Field.of("email", Schema.nullableOf(Schema.of(Schema.Type.STRING))),

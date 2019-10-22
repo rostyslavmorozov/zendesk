@@ -27,7 +27,7 @@ import java.util.Arrays;
  */
 public enum ObjectType {
   USERS_SIMPLE(
-    "Users", "users",
+    "Users Simple", "users",
     "users.json",
     false, null),
   REQUESTS(

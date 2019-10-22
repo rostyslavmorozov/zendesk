@@ -38,6 +38,8 @@
     <commons-validator.version>1.4.1</commons-validator.version>
     <junit.version>4.11</junit.version>
     <mockito.version>1.10.19</mockito.version>
+    <guice.version>4.0</guice.version>
+    <zendesk-java-client.version>0.9.0</zendesk-java-client.version>
   </properties>
 
   <repositories>
@@ -235,6 +237,18 @@
       <groupId>io.cdap.cdap</groupId>
       <artifactId>hydrator-test</artifactId>
       <version>${cdap.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.inject</groupId>
+      <artifactId>guice</artifactId>
+      <version>${guice.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.cloudbees.thirdparty</groupId>
+      <artifactId>zendesk-java-client</artifactId>
+      <version>${zendesk-java-client.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
