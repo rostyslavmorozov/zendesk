@@ -56,7 +56,8 @@ public class ZendeskBatchSource extends BatchSource<NullWritable, StructuredReco
   @Override
   public void configurePipeline(PipelineConfigurer pipelineConfigurer) {
     FailureCollector failureCollector = pipelineConfigurer.getStageConfigurer().getFailureCollector();
-    validateConfiguration(failureCollector);
+    config.validate(failureCollector);
+    failureCollector.getOrThrowException();
 
     if (!config.containsMacro(BaseZendeskSourceConfig.PROPERTY_OBJECTS_TO_PULL)) {
       pipelineConfigurer.getStageConfigurer().setOutputSchema(config.getSchema(failureCollector));
@@ -66,7 +67,9 @@ public class ZendeskBatchSource extends BatchSource<NullWritable, StructuredReco
   @Override
   public void prepareRun(BatchSourceContext batchSourceContext) throws Exception {
     FailureCollector failureCollector = batchSourceContext.getFailureCollector();
-    validateConfiguration(failureCollector);
+    config.validate(failureCollector);
+    failureCollector.getOrThrowException();
+
     Schema schema = config.getSchema(failureCollector);
     String objectToPull = config.getObjectsToPull().iterator().next();
 
@@ -87,10 +90,5 @@ public class ZendeskBatchSource extends BatchSource<NullWritable, StructuredReco
   public void transform(KeyValue<NullWritable, StructuredRecord> input,
                         Emitter<StructuredRecord> emitter) throws Exception {
     emitter.emit(input.getValue());
-  }
-
-  private void validateConfiguration(FailureCollector failureCollector) {
-    config.validate(failureCollector);
-    failureCollector.getOrThrowException();
   }
 }

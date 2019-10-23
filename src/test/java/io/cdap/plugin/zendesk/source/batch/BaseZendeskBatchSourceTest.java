@@ -68,7 +68,7 @@ import java.util.concurrent.TimeUnit;
  * -Dzendesk.test.adminEmail= -Dzendesk.test.apiToken=
  * -Dzendesk.test.subdomain=
  */
-public class BaseZendeskBatchSourceTest extends HydratorTestBase {
+public abstract class BaseZendeskBatchSourceTest extends HydratorTestBase {
 
   private static final Logger LOG = LoggerFactory.getLogger(BaseZendeskBatchSourceTest.class);
 
@@ -83,7 +83,7 @@ public class BaseZendeskBatchSourceTest extends HydratorTestBase {
   private static final List<Long> USER_IDS = new ArrayList<>();
   private static final List<Long> GROUP_IDS = new ArrayList<>();
 
-  private static Zendesk ZENDESK_CLIENT;
+  private static Zendesk zendeskClient;
 
   @Rule
   public TestName testName = new TestName();
@@ -98,7 +98,7 @@ public class BaseZendeskBatchSourceTest extends HydratorTestBase {
       throw e;
     }
 
-    ZENDESK_CLIENT = new Zendesk.Builder(String.format("https://%s.zendesk.com/", SUBDOMAIN))
+    zendeskClient = new Zendesk.Builder(String.format("https://%s.zendesk.com/", SUBDOMAIN))
       .setUsername(ADMIN_EMAIL)
       .setToken(API_TOKEN)
       .build();
@@ -117,8 +117,8 @@ public class BaseZendeskBatchSourceTest extends HydratorTestBase {
   public static void tearDownTestClass() {
     USER_IDS.forEach(BaseZendeskBatchSourceTest::deleteUser);
     GROUP_IDS.forEach(BaseZendeskBatchSourceTest::deleteGroup);
-    if (ZENDESK_CLIENT != null) {
-      ZENDESK_CLIENT.close();
+    if (zendeskClient != null) {
+      zendeskClient.close();
     }
   }
 
@@ -149,26 +149,26 @@ public class BaseZendeskBatchSourceTest extends HydratorTestBase {
 
   protected User createUser() {
     String methodName = testName.getMethodName();
-    User user = ZENDESK_CLIENT.createUser(
+    User user = zendeskClient.createUser(
       new User(true, "Test User " + methodName, methodName + "@domain.com"));
     USER_IDS.add(user.getId());
     return user;
   }
 
   private static void deleteUser(Long userId) {
-    ZENDESK_CLIENT.deleteUser(userId);
+    zendeskClient.deleteUser(userId);
   }
 
   protected Group createGroup() {
     String methodName = testName.getMethodName();
     Group group = new Group();
     group.setName("Test Group " + methodName);
-    group = ZENDESK_CLIENT.createGroup(group);
+    group = zendeskClient.createGroup(group);
     GROUP_IDS.add(group.getId());
     return group;
   }
 
   private static void deleteGroup(Long groupId) {
-    ZENDESK_CLIENT.deleteGroup(groupId);
+    zendeskClient.deleteGroup(groupId);
   }
 }

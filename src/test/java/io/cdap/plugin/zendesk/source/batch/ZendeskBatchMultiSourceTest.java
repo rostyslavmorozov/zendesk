@@ -57,7 +57,8 @@ public class ZendeskBatchMultiSourceTest extends BaseZendeskBatchSourceTest {
       .put("zendeskBaseUrl", "https://%s.zendesk.com/api/v2/%s")
       .build();
 
-    List<StructuredRecord> outputRecords = getPipelineResults(properties, ZendeskBatchMultiSource.NAME, "ZendeskBatchMulti");
+    List<StructuredRecord> outputRecords = getPipelineResults(
+      properties, ZendeskBatchMultiSource.NAME, "ZendeskBatchMulti");
     List<StructuredRecord> result = outputRecords.stream()
       .filter(record -> user.getId().equals(record.get("id")) || group.getId().equals(record.get("id")))
       .sorted(Comparator.comparing(r -> ((String) r.get("object"))))

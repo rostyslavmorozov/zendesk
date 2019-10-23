@@ -52,21 +52,22 @@ public class ZendeskBatchSourceConfig extends BaseZendeskSourceConfig {
   public static final String PROPERTY_SCHEMA = "schema";
 
   @Name(PROPERTY_START_DATE)
-  @Description("Filter data to only include records where Zendesk modified date " +
+  @Description("Filter data to include only records which have Zendesk modified date " +
     "is greater than or equal to the specified date.")
   @Nullable
   @Macro
   private String startDate;
 
   @Name(PROPERTY_END_DATE)
-  @Description("Filter data to only include records where Zendesk modified date " +
+  @Description("Filter data to include only records which have Zendesk modified date " +
     "is less than the specified date.")
   @Nullable
   @Macro
   private String endDate;
 
   @Name(PROPERTY_SATISFACTION_RATINGS_SCORE)
-  @Description("Score filter for Satisfaction Ratings object.")
+  @Description("Filter Satisfaction Ratings object to include only records " +
+    "which have Zendesk score equal to the specified score.")
   @Nullable
   @Macro
   private String satisfactionRatingsScore;
@@ -183,7 +184,7 @@ public class ZendeskBatchSourceConfig extends BaseZendeskSourceConfig {
     try {
       return Schema.parseJson(schema);
     } catch (IOException | IllegalStateException e) {
-      collector.addFailure(String.format("Unable to parse output schema: '%s'", schema),
+      collector.addFailure(String.format("Unable to parse output schema: '%s'.", schema),
                            null)
         .withConfigProperty(PROPERTY_SCHEMA);
       throw collector.getOrThrowException();
@@ -229,7 +230,7 @@ public class ZendeskBatchSourceConfig extends BaseZendeskSourceConfig {
       try (PagedIterator pagedIterator = new PagedIterator(this, ObjectType.GROUPS, subdomain)) {
         pagedIterator.hasNext();
       } catch (IOException | ConnectionTimeoutException e) {
-        collector.addFailure(String.format("There was issue communicating with Zendesk subdomain '%s'",
+        collector.addFailure(String.format("There was issue communicating with Zendesk subdomain '%s'.",
                                            subdomain), null)
           .withConfigProperty(BaseZendeskSourceConfig.PROPERTY_SUBDOMAINS);
       }

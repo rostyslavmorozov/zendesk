@@ -24,13 +24,13 @@ Configuration
 Check out [Zendesk documentation](https://support.zendesk.com/hc/en-us/articles/226022787-Generating-a-new-API-token-)
 for API Token generation.
 
-**Subdomains:** List of Zendesk Subdomains to read object from.
+**Subdomains:** List of Zendesk Subdomains to read the objects from.
 
 **Objects to Pull:** Objects to pull from Zendesk API. Supports multi-select.
 
 **Objects to Skip:** Objects to skip from Zendesk API. Supports multi-select.
 
-**Start Date:** Filter data to only include records where Zendesk modified date is greater than 
+**Start Date:** Filter data to include only records which have Zendesk modified date is greater than 
 or equal to the specified date. The date must be provided in the date format:
 
 |              Format              |       Format Syntax       |          Example          |
@@ -41,7 +41,7 @@ or equal to the specified date. The date must be provided in the date format:
 
 Start Date is required for batch objects like: Ticket Comments, Organizations, Ticket Metric Events, Tickets, Users.
 
-**End Date:** Filter data to only include records where Zendesk modified date is less than 
+**End Date:** Filter data to include only records which have Zendesk modified date is less than 
 the specified date. The date must be provided in the date format:
 
 |              Format              |       Format Syntax       |          Example          |
@@ -53,7 +53,8 @@ the specified date. The date must be provided in the date format:
 Specifying this along with `Start Date` allows reading data modified within a specific time window. 
 If no value is provided, no upper bound is applied.
 
-**Satisfaction Ratings Score:** Score filter for Satisfaction Ratings object.
+**Satisfaction Ratings Score:** Filter Satisfaction Ratings object to include only records which have Zendesk score
+equal to the specified score.
 
 ### Advanced
 

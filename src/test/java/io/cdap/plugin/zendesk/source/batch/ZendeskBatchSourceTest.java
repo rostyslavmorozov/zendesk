@@ -54,7 +54,8 @@ public class ZendeskBatchSourceTest extends BaseZendeskBatchSourceTest {
       .put("zendeskBaseUrl", "https://%s.zendesk.com/api/v2/%s")
       .build();
 
-    List<StructuredRecord> outputRecords = getPipelineResults(properties, ZendeskBatchSource.NAME, "ZendeskBatch");
+    List<StructuredRecord> outputRecords = getPipelineResults(
+      properties, ZendeskBatchSource.NAME, "ZendeskBatch");
     List<StructuredRecord> result = outputRecords.stream()
       .filter(record -> user.getId().equals(record.get("id")))
       .collect(Collectors.toList());

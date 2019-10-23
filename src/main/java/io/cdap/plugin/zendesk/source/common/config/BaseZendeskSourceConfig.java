@@ -136,12 +136,12 @@ public class BaseZendeskSourceConfig extends ReferencePluginConfig {
     IdUtils.validateReferenceName(referenceName, collector);
     if (!containsMacro(PROPERTY_ADMIN_EMAIL)
       && !EmailValidator.getInstance().isValid(adminEmail)) {
-      collector.addFailure(String.format("Provided email is invalid: %s", adminEmail), null)
+      collector.addFailure(String.format("'%s' is not a valid email.", adminEmail), null)
         .withConfigProperty(PROPERTY_ADMIN_EMAIL);
     }
     if (!Strings.isNullOrEmpty(objectsToSkip)
       && getObjects().isEmpty()) {
-      collector.addFailure("All objects are skipped", null)
+      collector.addFailure("All objects are skipped.", null)
         .withConfigProperty(PROPERTY_OBJECTS_TO_PULL)
         .withConfigProperty(PROPERTY_OBJECTS_TO_SKIP);
     }

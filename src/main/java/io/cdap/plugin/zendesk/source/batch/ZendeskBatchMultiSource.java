@@ -55,15 +55,15 @@ public class ZendeskBatchMultiSource extends BatchSource<NullWritable, Structure
   @Override
   public void configurePipeline(PipelineConfigurer pipelineConfigurer) {
     FailureCollector failureCollector = pipelineConfigurer.getStageConfigurer().getFailureCollector();
-    validateConfiguration(failureCollector);
-
-    pipelineConfigurer.getStageConfigurer().setOutputSchema(null);
+    config.validate(failureCollector);
+    failureCollector.getOrThrowException();
   }
 
   @Override
   public void prepareRun(BatchSourceContext batchSourceContext) throws Exception {
     FailureCollector failureCollector = batchSourceContext.getFailureCollector();
-    validateConfiguration(failureCollector);
+    config.validate(failureCollector);
+    failureCollector.getOrThrowException();
 
     Map<String, Schema> schemas = config.getSchemas(failureCollector);
     Map<String, String> schemasStrings = schemas.entrySet()
@@ -87,10 +87,5 @@ public class ZendeskBatchMultiSource extends BatchSource<NullWritable, Structure
   public void transform(KeyValue<NullWritable, StructuredRecord> input,
                         Emitter<StructuredRecord> emitter) throws Exception {
     emitter.emit(input.getValue());
-  }
-
-  private void validateConfiguration(FailureCollector failureCollector) {
-    config.validate(failureCollector);
-    failureCollector.getOrThrowException();
   }
 }
